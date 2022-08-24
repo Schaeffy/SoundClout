@@ -2,7 +2,8 @@
 
 ## Database Schema Design
 
-<img src=https://drawsql.app/teams/schaeffy-and-friends/diagrams/soundcloud>
+<img src=https://photos.app.goo.gl/GmwEd6DMRu2zLj619>
+
 
 ## API Documentation
 
