@@ -40,11 +40,11 @@ if (!isProduction) {
         httpOnly: true
       }
     })
-  );
-
-  // backend/app.js
-const routes = require('./routes');
-
+    );
+    
+    // backend/app.js
+    const routes = require('./routes');
+    
 // ...
 
 app.use(routes); // Connect all the routes
