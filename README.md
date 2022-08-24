@@ -4,6 +4,7 @@
 
 ![image](https://user-images.githubusercontent.com/79663621/186527834-dfed8745-2c0b-4fdc-b303-221d5783b614.png)
 
+![image](https://user-images.githubusercontent.com/79663621/186531047-8a25d10a-8356-4ae8-9b1b-a03e43831270.png)
 
 
 ## API Documentation
