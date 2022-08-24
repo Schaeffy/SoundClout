@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`https://drawsql.app/teams/schaeffy-and-friends/diagrams/soundcloud/embed`
+[https://drawsql.app/teams/schaeffy-and-friends/diagrams/soundcloud/embed](https://drawsql.app/teams/schaeffy-and-friends/diagrams/soundcloud/embed)
 
 ## API Documentation
 
