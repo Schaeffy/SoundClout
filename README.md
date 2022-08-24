@@ -1,4 +1,4 @@
-# `<name of application here>`
+# `Soundcloud`
 
 ## Database Schema Design
 
