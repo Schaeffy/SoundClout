@@ -59,4 +59,20 @@ router.get('/', restoreUser, requireAuth, async (req, res) => {
     res.json(allSongs)
 })
 
+// Get all Songs created by Current User
+
+router.get('/current', restoreUser, requireAuth, async (req, res) => {
+    const currentUser = req.user.id
+
+    const currentUserSongs = await Song.findAll({
+        where: {
+            userId: currentUser
+        }
+    })
+
+    res.json(currentUserSongs)
+})
+
+
+
 module.exports = router
