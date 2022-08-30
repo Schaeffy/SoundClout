@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Comment.belongsTo(models.Song)
+      Comment.belongsTo(models.User)
     }
   }
   Comment.init({

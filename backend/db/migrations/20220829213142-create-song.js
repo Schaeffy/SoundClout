@@ -10,14 +10,12 @@ module.exports = {
       },
       albumId: {
         type: Sequelize.INTEGER,
-        allowNull:false,
         references: {
           model: 'Albums'
         }
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'Users'
         }

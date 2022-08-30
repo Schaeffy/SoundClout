@@ -31,7 +31,7 @@ module.exports = {
         allowNull: false
       },
       imageUrl: {
-        type:Sequelize.String(100)
+        type:Sequelize.STRING(100)
       },
       createdAt: {
         allowNull: false,
