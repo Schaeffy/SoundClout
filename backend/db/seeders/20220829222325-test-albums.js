@@ -64,6 +64,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Albums', {seededBy: 'test-albums'})
+    await queryInterface.bulkDelete('Albums', null, {})
   }
 };

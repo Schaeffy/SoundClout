@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       )
       Song.belongsTo(models.Album)
       Song.hasMany(models.Comment)
+      Song.belongsTo(models.User, {foreignKey: 'userId', as: "Artist", onDelete:"cascade"})
     }
   }
   Song.init({
