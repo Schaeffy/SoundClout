@@ -13,10 +13,16 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Song.belongsToMany(
         models.Playlist,
-        {through: models.PlaylistSong}
+        {through: models.PlaylistSong, onDelete:'CASCADE'}
       )
-      Song.belongsTo(models.Album)
-      Song.hasMany(models.Comment)
+      Song.belongsTo(models.Album, {
+        foreignKey: 'albumId',
+        onDelete:'CASCADE'
+      })
+      Song.hasMany(models.Comment, {
+        foreignKey: 'songId',
+        onDelete: 'CASCADE'
+      })
       Song.belongsTo(models.User, {foreignKey: 'userId', as: "Artist", onDelete:"cascade"})
     }
   }
