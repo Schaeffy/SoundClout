@@ -1,8 +1,9 @@
 // backend/routes/api/users.js
 const express = require('express')
 
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+
+const { setTokenCookie, requireAuth, restoreUser } = require('../../utils/auth');
+const { User, Song, Album, Comment, Playlist } = require('../../db/models');
 
 // backend/routes/api/users.js
 // ...
@@ -61,6 +62,49 @@ router.post(
 );
 
 
+
+
+
+
+
+// router.get('/:userId', restoreUser, async (req, res) => {
+//   const artistId = req.params.userId
+
+
+//   const artist = await User.findByPk(artistId, {
+//       attributes: [
+//         'id',
+//         'username',
+//         'imageUrl'
+//       ]
+
+//   })
+
+//   if (!artist) {
+//       return res.status(404).json({
+//           message: "Artist couldn't be found",
+//           statusCode: 404
+//       })
+//   }
+
+//   const  totalSongs = await Song.count({
+//       where: {userId: artistId}
+//   })
+
+//   const totalAlbums = await Album.count({
+//       where: {userId: artistId}
+//   })
+
+//   res.json({
+//       'id': artist.id,
+//       'username': artist.username,
+//       'imageUrl': artist.imageUrl,
+//       'totalSongs': totalSongs,
+//       'totalAlbums': totalAlbums
+//   })
+
+
+// })
 
 
 module.exports = router;
