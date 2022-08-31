@@ -13,7 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Song.belongsToMany(
         models.Playlist,
-        {through: models.PlaylistSong, onDelete:'CASCADE'}
+        {through: models.PlaylistSong,
+          foreignKey: 'songId',
+          otherKey: 'playlistId',
+          onDelete:'CASCADE'}
       )
       Song.belongsTo(models.Album, {
         foreignKey: 'albumId',
@@ -23,7 +26,11 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'songId',
         onDelete: 'CASCADE'
       })
-      Song.belongsTo(models.User, {foreignKey: 'userId', as: "Artist", onDelete:"cascade"})
+      Song.belongsTo(models.User, {
+        foreignKey: 'userId',
+        as: 'Artist',
+        onDelete: 'CASCADE'
+      })
     }
   }
   Song.init({

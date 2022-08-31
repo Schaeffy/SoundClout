@@ -12,9 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       PlaylistSong.belongsTo(models.Song, {
+        foreignKey: 'playlistId',
+        otherKey: 'songId',
         onDelete: 'CASCADE'
       });
       PlaylistSong.belongsTo(models.Playlist, {
+        foreignKey: 'songId',
+        otherKey: 'playlistId',
         onDelete: 'CASCADE'
       });
     }
