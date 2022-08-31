@@ -51,7 +51,7 @@ router.get('/', restoreUser, requireAuth, async (req, res) => {
         res.status(404)
         return res.json({
             errors: [
-                {message: "Songs not found"}
+                { message: "Songs not found" }
             ]
         })
     }
@@ -62,16 +62,144 @@ router.get('/', restoreUser, requireAuth, async (req, res) => {
 // Get all Songs created by Current User
 
 router.get('/current', restoreUser, requireAuth, async (req, res) => {
-    const currentUser = req.user.id
+    const userId = req.user.id
 
     const currentUserSongs = await Song.findAll({
         where: {
-            userId: currentUser
+            userId
         }
     })
 
     res.json(currentUserSongs)
 })
+
+// Get a Song by Id
+
+router.get('/:songId', restoreUser, requireAuth, async (req, res) => {
+
+    const songId = req.params.songId
+
+    const song = await Song.findOne({
+        where: {
+            id: songId
+        },
+        include: [{ model: User, as: 'Artist', attributes: ['id', 'username', 'imageUrl'] }, {
+            model: Album, attributes: ['id', 'title', 'imageUrl']
+        }]
+    })
+
+    if (!song) {
+        return res.status(404).json({
+            errors: [
+                {
+                    message: "Song couldn't be found",
+                    statusCode: 404
+                },
+            ]
+        })
+    }
+
+    res.json(song)
+})
+
+// Create a song
+
+router.post('/', restoreUser, requireAuth, async (req, res) => {
+    const userId = req.user.id
+    const { title, description, url, imageUrl, albumId } = req.body
+
+
+    const album = await Album.findOne({
+        where: {
+            id: albumId
+        }
+    })
+
+    if (albumId !== null && !album) {
+        return res.status(404).json({
+            errors: [
+                { message: "Album couldn't be found" }
+            ]
+        })
+    }
+
+    if (!title || !url) {
+        res.status(400)
+        return res.json({
+            errors: [
+                {
+                    "title": "Song title is required",
+                    "url": "Audio is required"
+                }
+            ]
+        })
+    }
+
+    const newSong = await Song.create({
+        userId,
+        title,
+        description,
+        url,
+        imageUrl,
+        albumId
+    })
+
+    res.status(201).json(newSong)
+})
+
+router.put('/:songId', restoreUser, requireAuth, async (req, res) => {
+    const { title, description, url, imageUrl, albumId } = req.body
+    const songId = req.params.songId
+
+    const song = await Song.findOne({
+        where: {
+            id: songId
+        }
+    })
+
+    if (!title || !url) {
+        res.status(400)
+        return res.json({
+            errors: [
+                {
+                    "title": "Song title is required",
+                    "url": "Audio is required"
+                }
+            ]
+        })
+    }
+
+    if (!song) {
+        return res.status(404).json({
+            errors: [
+                {
+                    message: "Song couldn't be found",
+                    statusCode: 404
+                },
+            ]
+        })
+    }
+
+    if (title) {
+        song.title = title
+    }
+    if (description) {
+        song.description = description
+    }
+    if (url) {
+        song.url = url
+    }
+
+    await song.save()
+    res.status(200).json(song)
+
+})
+
+
+
+
+
+
 
 
 
