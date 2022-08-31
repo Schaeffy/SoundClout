@@ -44,7 +44,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
         }
     })
 
-    res.json(currentUserSongs)
+    res.json({Songs:currentUserSongs})
 })
 
 // Get a Song by Id
@@ -83,11 +83,7 @@ router.post('/', restoreUser, requireAuth, async (req, res) => {
     const { title, description, url, imageUrl, albumId } = req.body
 
 
-    const album = await Album.findOne({
-        where: {
-            id: albumId
-        }
-    })
+    const album = await Album.findByPk(albumId)
 
     if (albumId !== null && !album) {
         return res.status(404).json({

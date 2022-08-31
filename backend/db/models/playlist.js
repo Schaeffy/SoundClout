@@ -15,7 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         models.Song,
         {through: models.PlaylistSong,
           foreignKey: 'playlistId',
-          otherKey: 'songId',
           onDelete: 'CASCADE'}
       )
       Playlist.belongsTo(models.User, {
