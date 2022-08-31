@@ -49,10 +49,22 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // define association here
-      User.hasMany(models.Album)
-      User.hasMany(models.Song)
-      User.hasMany(models.Comment)
-      User.hasMany(models.Playlist)
+      User.hasMany(models.Album, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE'
+      })
+      User.hasMany(models.Song, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE'
+      })
+      User.hasMany(models.Comment, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE'
+      })
+      User.hasMany(models.Playlist, {
+        foreignKey: 'userId',
+        onDelete: 'CASCADE'
+      })
 
     }
   }
