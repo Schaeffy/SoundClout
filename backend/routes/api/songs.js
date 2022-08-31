@@ -25,36 +25,10 @@ const SongValidation = [
 // Get all songs
 
 router.get('/', restoreUser, requireAuth, async (req, res) => {
-    // let { size, page, } = req.query;
 
-    // if (!size) {
-    //     size = 20;
-    // }
-    // if (!page) {
-    //     page = 1;
-    // }
-
-    // size = parseInt(size)
-    // page = parseInt(page)
-
-    // let pagination = {}
-    // if (page >= 1 && size >= 1) {
-    //     pagination.limit = size
-    //     pagination.offset = size * (page - 1)
-    // }
 
     const allSongs = await Song.findAll({
-        // ...pagination
     })
-
-    if (!allSongs) {
-        res.status(404)
-        return res.json({
-            errors: [
-                { message: "Songs not found" }
-            ]
-        })
-    }
 
     res.json({Songs:allSongs})
 })
