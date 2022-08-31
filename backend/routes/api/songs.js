@@ -56,7 +56,7 @@ router.get('/', restoreUser, requireAuth, async (req, res) => {
         })
     }
 
-    res.json(allSongs)
+    res.json({Songs:allSongs})
 })
 
 // Get all Songs created by Current User
