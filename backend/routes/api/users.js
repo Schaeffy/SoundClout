@@ -67,44 +67,39 @@ router.post(
 
 
 
-// router.get('/:userId', restoreUser, async (req, res) => {
-//   const artistId = req.params.userId
+router.get('/:userId', restoreUser, async (req, res) => {
+  const userId = req.params.userId
 
+  const artist = await User.findByPk(userId, {
+      attributes:
+              ['id','username','imageUrl']
 
-//   const artist = await User.findByPk(artistId, {
-//       attributes: [
-//         'id',
-//         'username',
-//         'imageUrl'
-//       ]
+  })
 
-//   })
+  if (!artist) {
+      return res.status(404).json({
+          message: "Artist couldn't be found",
+          statusCode: 404
+      })
+  }
 
-//   if (!artist) {
-//       return res.status(404).json({
-//           message: "Artist couldn't be found",
-//           statusCode: 404
-//       })
-//   }
+  const  totalSongs = await Song.count({
+      where: {userId: userId}
+  })
 
-//   const  totalSongs = await Song.count({
-//       where: {userId: artistId}
-//   })
+  const totalAlbums = await Album.count({
+      where: {userId: userId}
+  })
 
-//   const totalAlbums = await Album.count({
-//       where: {userId: artistId}
-//   })
+  res.json({
+      'id': artist.id,
+      'username': artist.username,
+      'imageUrl': artist.imageUrl,
+      'totalSongs': totalSongs,
+      'totalAlbums': totalAlbums
+  })
 
-//   res.json({
-//       'id': artist.id,
-//       'username': artist.username,
-//       'imageUrl': artist.imageUrl,
-//       'totalSongs': totalSongs,
-//       'totalAlbums': totalAlbums
-//   })
-
-
-// })
+})
 
 
 router.get('/:userId/playlists', restoreUser, async (req, res) => {

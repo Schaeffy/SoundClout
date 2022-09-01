@@ -21,6 +21,32 @@ const PlaylistValidation = [
     handleValidationErrors
 ]
 
+
+// Get all Playlists created by the Current User
+
+router.get('/current', restoreUser, requireAuth, async (req, res) => {
+    const userId = req.user.id
+
+    const playlist = await Playlist.findAll({
+        where: {
+            userId
+        },
+        attributes: {
+            include: ['id', 'userId', 'name', 'createdAt', 'updatedAt', 'imageUrl']
+        }
+    })
+
+    if (!playlist) {
+        return res.status(404).json({
+            message: "No playlists found",
+            statusCode: 404
+        })
+    }
+
+    res.json({Playlists: playlist})
+})
+
+
 // Create a Playlist
 
 router.post('/', restoreUser, requireAuth, async (req, res) => {
@@ -46,6 +72,43 @@ router.post('/', restoreUser, requireAuth, async (req, res) => {
     res.status(201).json(playlist)
 })
 
+
+//Edit a Playlist
+
+router.put('/:playlistId', restoreUser, requireAuth, async (req, res) => {
+    const userId = req.user.id
+    const playlistId = req.params.playlistId
+    const {name, imageUrl} = req.body
+
+    const playlist = await Playlist.findByPk(playlistId, {
+        attributes: {
+            include: ['id', 'userId', 'name', 'imageUrl', 'createdAt', 'updatedAt']
+        }
+    })
+
+    if (!playlist) {
+        return res.status(404).json({
+            message: "Playlist couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (playlist.userId !== userId) {
+        return res.status(403).json({
+            title: "Authentication error",
+            statuscode: 403,
+            message: "This playlist does not belong to you"
+        })
+    }
+
+    if (name) playlist.name = name
+    if (imageUrl) playlist.imageUrl = imageUrl
+
+    await playlist.save()
+    return res.json(playlist)
+})
+
+// Get Songs by Playlist Id
 
 router.post('/:playlistId/songs', restoreUser, requireAuth, async (req, res) => {
     const playlistId = req.params.playlistId
@@ -91,6 +154,8 @@ router.post('/:playlistId/songs', restoreUser, requireAuth, async (req, res) => 
 
     res.status(201).json(foundPlaylistSong)
 })
+
+//Get details of a Playlist by ID
 
 router.get('/:playlistId', restoreUser, async (req, res) => {
     const playlistId = req.params.playlistId
