@@ -93,7 +93,7 @@ router.get('/', restoreUser, requireAuth, async (req, res) => {
     page = parseInt(page)
     size = parseInt(size)
 
-    if ((!page) || page > 10) page = 0
+    if ((!page) || page > 10) page = 1
     if ((!size) || size > 20) size = 20
 
     let pagination = {}
