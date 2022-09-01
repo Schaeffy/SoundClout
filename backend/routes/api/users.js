@@ -107,4 +107,27 @@ router.post(
 // })
 
 
+router.get('/:userId/playlists', restoreUser, async (req, res) => {
+  const userId = req.params.userId
+
+  const user = await User.findByPk(userId)
+
+  const playlists = await Playlist.findAll({
+    where:{
+      userId
+    }
+  })
+
+  if (!user) {
+    return res.status(404).json({
+      message: "Artist couldn't be found",
+      statusCode: 404
+    })
+  }
+
+  res.json(playlists)
+})
+
+
+
 module.exports = router;
