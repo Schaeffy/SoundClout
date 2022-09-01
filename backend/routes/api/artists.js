@@ -74,7 +74,7 @@ router.get('/:artistId/songs', restoreUser, async (req, res) => {
 
     const songs = await Song.findAll({
         where: {
-            id: artistId
+            userId: artistId
         }
     })
 
