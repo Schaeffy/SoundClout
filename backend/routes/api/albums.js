@@ -23,12 +23,12 @@ const AlbumValidation = [
 ]
 
 // Get all Albums
-router.get('/', restoreUser, requireAuth, async (req, res) => {
-    const albums = await Album.findAll ({
+router.get('/', restoreUser, async (req, res) => {
+    const albums = await Album.findAll({
 
     })
 
-    res.json(albums)
+    res.json({ Albums: albums })
 })
 
 // Get Albums by Current User
@@ -41,11 +41,11 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
         },
     })
 
-    res.json(currentUserAlbum)
+    res.json({ Albums: currentUserAlbum })
 })
 
-// Get Albums by Id
-router.get('/:albumId', restoreUser, requireAuth, async (req, res) => {
+// Get details of an Albums by Id
+router.get('/:albumId', restoreUser, async (req, res) => {
 
     const albumId = req.params.albumId
 
@@ -53,19 +53,17 @@ router.get('/:albumId', restoreUser, requireAuth, async (req, res) => {
         where: {
             id: albumId
         },
-        include: [{ model: Song,
+        include: [{
+            model: Song,
             attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'createdAt', 'updatedAt', 'imageUrl']
         }]
     })
 
     if (!album) {
         return res.status(404).json({
-            errors: [
-                {
-                    message: "Album couldn't be found",
-                    statusCode: 404
-                },
-            ]
+
+            message: "Album couldn't be found",
+            statusCode: 404
         })
     }
 
@@ -76,7 +74,7 @@ router.get('/:albumId', restoreUser, requireAuth, async (req, res) => {
 // Create Album
 router.post('/', restoreUser, requireAuth, async (req, res) => {
     const userId = req.user.id
-    const {title, description, imageUrl} = req.body
+    const { title, description, imageUrl } = req.body
 
     const newAlbum = await Album.create({
         userId,
@@ -88,6 +86,8 @@ router.post('/', restoreUser, requireAuth, async (req, res) => {
     if (!title) {
         res.status(400)
         return res.json({
+            message: "Validation Error",
+            statusCode: 400,
             errors: [
                 {
                     "title": "Album title is required",
@@ -99,10 +99,11 @@ router.post('/', restoreUser, requireAuth, async (req, res) => {
     res.status(201).json(newAlbum)
 })
 
+
 // Edit an Album
 
 router.put('/:albumId', restoreUser, requireAuth, async (req, res) => {
-    const { title, description,imageUrl } = req.body
+    const { title, description, imageUrl } = req.body
     const albumId = req.params.albumId
 
     const album = await Album.findOne({
@@ -114,6 +115,8 @@ router.put('/:albumId', restoreUser, requireAuth, async (req, res) => {
     if (!title) {
         res.status(400)
         return res.json({
+            message: "Validation Error",
+            statusCode: 400,
             errors: [
                 {
                     "title": "Album title is required",
@@ -124,12 +127,10 @@ router.put('/:albumId', restoreUser, requireAuth, async (req, res) => {
 
     if (!album) {
         return res.status(404).json({
-            errors: [
-                {
-                    message: "Album couldn't be found",
-                    statusCode: 404
-                },
-            ]
+
+            message: "Album couldn't be found",
+            statusCode: 404
+
         })
     }
 
@@ -147,5 +148,36 @@ router.put('/:albumId', restoreUser, requireAuth, async (req, res) => {
     res.status(200).json(album)
 
 })
+
+// Delete an Album
+
+router.delete('/:albumId', restoreUser, requireAuth, async (req, res) => {
+    const albumId = req.params.albumId
+    const userId = req.user.id
+
+    const album = await Album.findByPk(albumId)
+
+    if (!album) {
+        return res.status(404).json({
+            message: "Album couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (userId !== album.userId) {
+        return res.status(403).json({
+            title: "Authentication error",
+            statuscode: 403,
+            message: "This album does not belong to you"
+        })
+    }
+
+    await album.destroy()
+    res.status(200).json({
+        message: "Sucessfully deleted",
+        statusCode: 200
+    })
+})
+
 
 module.exports = router

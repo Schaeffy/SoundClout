@@ -52,7 +52,7 @@ router.get('/:songId/comments', restoreUser, requireAuth, async (req, res) => {
 router.post('/:songId/comments', restoreUser, requireAuth, async (req, res) => {
     const songId = req.params.songId
     const userId = req.user.id
-    const {body} = req.body
+    const { body } = req.body
 
     const song = await Song.findByPk(songId)
 
@@ -87,11 +87,34 @@ router.post('/:songId/comments', restoreUser, requireAuth, async (req, res) => {
 
 router.get('/', restoreUser, requireAuth, async (req, res) => {
 
+    let { page, size, title, createdAt } = req.query
+
+
+    page = parseInt(page)
+    size = parseInt(size)
+
+    if ((!page) || page > 10) page = 0
+    if ((!size) || size > 20) size = 20
+
+    let pagination = {}
+    let where = {}
+
+    pagination.limit = size
+    pagination.offset = size * (page - 1)
+
+    if (title) where.title = title
+    if (createdAt) where.createdAt = createdAt
 
     const allSongs = await Song.findAll({
+        where: {...where},
+        ...pagination
     })
 
-    res.json({ Songs: allSongs })
+    res.json({
+        Songs: allSongs,
+        page,
+        size,
+    })
 })
 
 // Get all Songs created by Current User
@@ -146,15 +169,18 @@ router.post('/', restoreUser, requireAuth, async (req, res) => {
 
     if (albumId !== null && !album) {
         return res.status(404).json({
-            errors: [
-                { message: "Album couldn't be found" }
-            ]
+
+            message: "Album couldn't be found",
+            statusCode: 404
+
         })
     }
 
     if (!title || !url) {
         res.status(400)
         return res.json({
+            message: "Validation Error",
+            statusCode: 400,
             errors: [
                 {
                     "title": "Song title is required",
@@ -176,6 +202,9 @@ router.post('/', restoreUser, requireAuth, async (req, res) => {
     res.status(201).json(newSong)
 })
 
+
+// Edit a Song
+
 router.put('/:songId', restoreUser, requireAuth, async (req, res) => {
     const { title, description, url, imageUrl, albumId } = req.body
     const songId = req.params.songId
@@ -189,6 +218,8 @@ router.put('/:songId', restoreUser, requireAuth, async (req, res) => {
     if (!title || !url) {
         res.status(400)
         return res.json({
+            message: "Validation Error",
+            statusCode: 400,
             errors: [
                 {
                     "title": "Song title is required",
@@ -224,7 +255,35 @@ router.put('/:songId', restoreUser, requireAuth, async (req, res) => {
 
 
 
+// Delete a Song
 
+router.delete('/:songId', restoreUser, requireAuth, async (req, res) => {
+    const songId = req.params.songId
+    const userId = req.user.id
+
+    const song = await Song.findByPk(songId)
+
+    if (!song) {
+        return res.status(404).json({
+            message: "Song couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (userId !== song.userId) {
+        return res.status(403).json({
+            title: "Authentication error",
+            statuscode: 403,
+            message: "This song does not belong to you"
+        })
+    }
+
+    await song.destroy()
+    res.status(200).json({
+        message: "Sucessfully deleted",
+        statusCode: 200
+    })
+})
 
 
 

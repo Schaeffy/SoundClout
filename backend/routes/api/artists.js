@@ -21,9 +21,9 @@ const ArtistValidation = [
     handleValidationErrors
 ]
 
+// Get details of an Artist from an Id
 
-
-router.get('/:userId', restoreUser, async (req, res) => {
+router.get('/:artistId', restoreUser, async (req, res) => {
     const userId = req.params.userId
 
     const artist = await User.findByPk(userId, {
@@ -57,12 +57,15 @@ router.get('/:userId', restoreUser, async (req, res) => {
 
 })
 
-router.get('/:artistId/songs', restoreUser, requireAuth, async (req, res) => {
+
+// Get all Songs of an Artist from an Id
+
+router.get('/:artistId/songs', restoreUser, async (req, res) => {
     const artistId = req.params.artistId
 
     const artist = await User.findByPk(artistId)
 
-    if (!artistId) {
+    if (!artist) {
         return res.status(404).json({
             message: "Artist couldn't be found",
             statusCode: 404

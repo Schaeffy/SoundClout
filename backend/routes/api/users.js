@@ -64,7 +64,7 @@ router.post(
 
 
 
-
+// Get details of an Artist from an Id
 
 
 router.get('/:userId', restoreUser, async (req, res) => {
@@ -120,7 +120,7 @@ router.get('/:userId/playlists', restoreUser, async (req, res) => {
     })
   }
 
-  res.json(playlists)
+  res.json({Playlists: playlists})
 })
 
 

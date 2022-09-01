@@ -180,5 +180,36 @@ router.get('/:playlistId', restoreUser, async (req, res) => {
 })
 
 
+// Delete a Playlist
+
+router.delete('/:playlistId', restoreUser, requireAuth, async (req, res) => {
+    const playlistId = req.params.playlistId
+    const userId = req.user.id
+
+    const playlist = await Playlist.findByPk(playlistId)
+
+    if (!playlist) {
+        return res.status(404).json({
+            message: "Playlist couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    if (userId !== playlist.userId) {
+        return res.status(403).json({
+            title: "Authentication error",
+            statuscode: 403,
+            message: "This playlist does not belong to you"
+        })
+    }
+
+    await playlist.destroy()
+    res.status(200).json({
+        message: "Sucessfully deleted",
+        statusCode: 200
+    })
+})
+
+
 
 module.exports = router
