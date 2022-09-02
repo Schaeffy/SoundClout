@@ -24,7 +24,7 @@ const ArtistValidation = [
 // Get details of an Artist from an Id
 
 router.get('/:artistId', restoreUser, async (req, res) => {
-    const userId = req.params.userId
+    const userId = req.params.artistId
 
     const artist = await User.findByPk(userId, {
         attributes:
@@ -82,7 +82,38 @@ router.get('/:artistId/songs', restoreUser, async (req, res) => {
 })
 
 
+//Get all Playlists by Artist Id
 
+router.get('/:userId/playlists', restoreUser, async (req, res) => {
+    const userId = req.params.userId
+
+    const user = await User.findByPk(userId)
+
+    if (!user) {
+        return res.status(404).json({
+            message: "Artist couldn't be found",
+            statusCode: 404
+        })
+    }
+
+
+
+    const playlist = await Playlist.findAll({
+        where: {
+            userId
+        },
+        attributes: {include: ['id', 'userId', 'name', 'imageUrl', 'createdAt', 'updatedAt']}
+    })
+
+    if (!playlist) {
+        return res.status(404).json({
+            message: "No playlists found",
+            statusCode: 404
+        })
+    }
+
+    res.json({Playlists:playlist})
+})
 
 
 
