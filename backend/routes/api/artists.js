@@ -23,8 +23,8 @@ const ArtistValidation = [
 
 // Get details of an Artist from an Id
 
-router.get('/:artistId', restoreUser, async (req, res) => {
-    const userId = req.params.artistId
+router.get('/:userId', restoreUser, async (req, res) => {
+    const userId = req.params.userId
 
     const artist = await User.findByPk(userId, {
         attributes:
