@@ -108,7 +108,7 @@ router.put('/:playlistId', restoreUser, requireAuth, async (req, res) => {
     return res.json(playlist)
 })
 
-// Get Songs by Playlist Id
+// Add song to playlist
 
 router.post('/:playlistId/songs', restoreUser, requireAuth, async (req, res) => {
     const playlistId = req.params.playlistId
