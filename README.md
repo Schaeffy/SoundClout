@@ -3,7 +3,7 @@
 ## Description
 
 Soundclout is a fullstack clone of Soundcloud using Express, React, and Redux.  
-View and explore the live site [here:](https://sound-clout.herokuapp.com)
+View and explore the live site [here](https://sound-clout.herokuapp.com)
 
 ## Technologies Used
 
