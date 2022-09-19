@@ -1,68 +1,48 @@
 // backend/routes/api/session.js
-const express = require('express')
-
+const express = require('express');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
-
 const router = express.Router();
-
-// backend/routes/api/session.js
-// ...
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-// ...
-
-
-  // backend/routes/api/session.js
-// ...
 
 const validateLogin = [
-    check('credential')
-      .exists({ checkFalsy: true })
-      .notEmpty()
-      .withMessage('Please provide a valid email or username.'),
-    check('password')
-      .exists({ checkFalsy: true })
-      .withMessage('Please provide a password.'),
-    handleValidationErrors
-  ];
-
-// backend/routes/api/session.js
-// ...
+  check('credential')
+    .exists({ checkFalsy: true })
+    .notEmpty()
+    .withMessage('Please provide a valid email or username.'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a password.'),
+  handleValidationErrors
+];
 
 // Log in
 router.post(
-    '/',
-    validateLogin,
-    async (req, res, next) => {
-      const { credential, password } = req.body;
+  '/',
+  validateLogin,
+  async (req, res, next) => {
+    const { credential, password } = req.body;
 
-      const user = await User.login({ credential, password });
+    const user = await User.login({ credential, password });
 
-      if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next(err);
-      }
-
-      const token = await setTokenCookie(res, user);
-      user.token = token
-
-      return res.json({
-        "id": user.id,
-        "firstName": user.firstName,
-        "lastName": user.lastName,
-        "email": user.email,
-        "username": user.username,
-        "token": user.token
-      });
+    if (!user) {
+      const err = new Error('Login failed');
+      err.status = 401;
+      err.title = 'Login failed';
+      err.errors = ['The provided credentials were invalid.'];
+      return next(err);
     }
-  );
 
-  // backend/routes/api/session.js
-// ...
+    const token = await setTokenCookie(res, user)
+
+    user.token = token
+    return res.json({
+      user,
+      token
+    });
+  }
+);
 
 // Log out
 router.delete(
@@ -72,11 +52,6 @@ router.delete(
       return res.json({ message: 'success' });
     }
   );
-
-  // ...
-
-  // backend/routes/api/session.js
-// ...
 
 // Restore session user
 router.get(
@@ -91,9 +66,6 @@ router.get(
       } else return res.json({});
     }
   );
-
-  // ...
-
 
 
 module.exports = router;
