@@ -108,7 +108,7 @@ export const getUserSongs = () => async dispatch => {
 //create a song
 
 export const createSong = (song) => async dispatch => {
-    const response = await csrfFetch('/api/songs', {
+    const response = await csrfFetch('/api/songs/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(song)

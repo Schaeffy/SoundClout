@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { getAllSongs } from '../../store/songs';
+import CreateSongModal from './CreateSong';
 
 
 export default function AllSongs() {
@@ -28,6 +29,9 @@ export default function AllSongs() {
     else {
         return (
             <div>
+            <div>
+                <CreateSongModal />
+            </div>
                 <h1>
                     All Songs
                 </h1>
