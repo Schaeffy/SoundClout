@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import SignupModal from '../SignupFormModal'
 import LoginDemo from '../LoginDemoUser/LoginDemoUser';
+import SongButton from './SongButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
@@ -14,7 +15,10 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      <div>
+      <SongButton user={sessionUser} />
       <ProfileButton user={sessionUser} />
+      </div>
     );
   } else {
     sessionLinks = (

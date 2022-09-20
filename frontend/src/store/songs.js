@@ -149,7 +149,7 @@ export const deleteSong = (songId) => async dispatch => {
 
 const initialState = {};
 
-export const songReducer = (state, initialState, action) => {
+export const songReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case GET_ALL_SONGS: {
