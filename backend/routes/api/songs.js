@@ -106,6 +106,15 @@ router.get('/', restoreUser, requireAuth, async (req, res) => {
     if (createdAt) where.createdAt = createdAt
 
     const allSongs = await Song.findAll({
+        include:
+        [{
+            model: User, as: 'Artist',
+            attributes: ['id', 'username', 'imageUrl']
+        },
+        {
+            model: Album,
+            attributes: ['id', 'title', 'imageUrl']
+        }],
         where: {...where},
         ...pagination
     })

@@ -62,12 +62,12 @@ export default function CreateSong({setModalOpen}) {
 
                 <label>
                     Image Url
-                    <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
                 <label>
                     Song Url
-                    <input type="url" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
                 </label>
 
                 <div>

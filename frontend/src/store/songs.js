@@ -183,6 +183,10 @@ export const songReducer = (state = initialState, action) => {
             const newState = { ...state };
             newState[action.song.id] = action.song
             return newState;
+            // return {
+            //     ...state,
+            //     [action.song.id]: action.song
+            // }
         }
 
         case DELETE_A_SONG: {

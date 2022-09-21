@@ -54,7 +54,7 @@ export default function SongDetails () {
 
                 <div>
 
-                    <img src={song.imageUrl} alt=''></img>
+                    <img src={song.imageUrl} key={song.imageUrl} alt=''></img>
 
                     <div>
                         Song: {song.title}

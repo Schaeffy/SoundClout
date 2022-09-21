@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from'react-router-dom'
 import { editSong } from '../../store/songs'
+import { getOneSong } from '../../store/songs'
 import './EditSong.css'
 
 
@@ -11,7 +12,7 @@ export default function EditSong({ setModalOpen }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const song = useSelector((state) => state.song)
-    const user = useSelector((state) => state.session.user)
+    // const user = useSelector((state) => state.session.user)
 
     const [id, setId] = useState(song.id)
     const [title, setTitle] = useState(song.title)
@@ -20,6 +21,14 @@ export default function EditSong({ setModalOpen }) {
     const [url, setUrl] = useState(song.url)
     const [imageUrl, setImageUrl] = useState(song.imageUrl)
     const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        dispatch(getOneSong(id))
+
+        return () => {
+            dispatch(getOneSong(id))
+        }
+    },[dispatch, id])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -30,8 +39,10 @@ export default function EditSong({ setModalOpen }) {
             return dispatch(editSong({ id, title, description, albumId, url, imageUrl })).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
-                history.push(`/songs/${song.id}`)
+                // history.push(`/songs/${song.id}`)
             })
+            // dispatch(editSong({ id, title, description, albumId, url, imageUrl }))
+            // history.push(`/songs/${id}`)
         }
         return setErrors(['Error'])
     }
@@ -64,12 +75,12 @@ export default function EditSong({ setModalOpen }) {
 
                 <label>
                     Image Url
-                    <input type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
                 <label>
                     Song Url
-                    <input type="url" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
                 </label>
 
             <div>
