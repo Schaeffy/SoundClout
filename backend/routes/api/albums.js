@@ -25,7 +25,11 @@ const AlbumValidation = [
 // Get all Albums
 router.get('/', restoreUser, async (req, res) => {
     const albums = await Album.findAll({
-
+        include:
+        [{
+            model: User, as: 'Artist',
+            attributes: ['id', 'username', 'imageUrl']
+        }]
     })
 
     res.json({ Albums: albums })
@@ -50,13 +54,19 @@ router.get('/:albumId', restoreUser, async (req, res) => {
     const albumId = req.params.albumId
 
     const album = await Album.findOne({
+        include:
+        [{
+            model: User, as: 'Artist',
+            attributes: ['id', 'username', 'imageUrl']
+        },
+        {
+            model: Song,
+            attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'createdAt', 'updatedAt', 'imageUrl']
+        }],
         where: {
             id: albumId
         },
-        include: [{
-            model: Song,
-            attributes: ['id', 'userId', 'albumId', 'title', 'description', 'url', 'createdAt', 'updatedAt', 'imageUrl']
-        }]
+
     })
 
     if (!album) {
