@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
-import {HomePage} from "./components/HomePage/HomePage";
+import { HomePage } from "./components/HomePage/HomePage";
 import AllSongs from "./components/Songs";
+import SongDetails from './components/Songs/GetOneSong'
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +25,13 @@ function App() {
             <HomePage />
           </Route>
 
-        <Route exact path='/songs'>
-          <AllSongs />
-        </Route>
+          <Route exact path='/songs'>
+            <AllSongs />
+          </Route>
+
+          <Route exact path ='/songs/:songId'>
+          <SongDetails />
+          </Route>
 
         </Switch>
       )}

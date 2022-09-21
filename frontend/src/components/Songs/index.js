@@ -29,18 +29,17 @@ export default function AllSongs() {
     else {
         return (
             <div>
-            <div>
-                <CreateSongModal />
-            </div>
+                <div>
+                    <CreateSongModal />
+                </div>
                 <h1>
                     All Songs
                 </h1>
-                <ul>
                     {allSongs.map((song) => {
                         return (
-                            <li key={song.id}>{song.title}</li>)
+                                <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                        )
                     })}
-                </ul>
             </div>
         )
     }
