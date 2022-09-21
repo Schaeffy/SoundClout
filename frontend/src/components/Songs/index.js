@@ -19,27 +19,34 @@ export default function AllSongs() {
 
     if (!user) {
         return (
+
             <div>
+
                 <h1>
                     Error
                 </h1>
+
             </div>
         )
     }
     else {
         return (
             <div>
+
                 <div>
                     <CreateSongModal />
                 </div>
+
                 <h1>
                     All Songs
                 </h1>
-                    {allSongs.map((song) => {
-                        return (
-                                <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
-                        )
-                    })}
+
+                {allSongs.map((song) => {
+                    return (
+                        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                    )
+                })}
+
             </div>
         )
     }

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { getOneSong } from '../../store/songs'
+import EditSongModal from './EditSong'
+import './GetOneSong.css'
 
 
 export default function SongDetails () {
@@ -14,8 +16,6 @@ export default function SongDetails () {
     useEffect(() => {
         dispatch(getOneSong(songId))
     },[dispatch, user, songId])
-
-
 
 
 
@@ -45,21 +45,33 @@ export default function SongDetails () {
     if (song.Artist && song.Album) {
         return (
             <div>
+
+            <div>
+                <EditSongModal />
+            </div>
+
                 <div>
+
                     <img src={song.imageUrl} alt=''></img>
+
                     <div>
                         Song: {song.title}
                     </div>
+
                     <div>
                         Artist: {song.Artist.username}
                     </div>
+
                     <div>
                         Description: {song.description}
                     </div>
+
                     <div>
                         Album: {song.Album.id}
                     </div>
+
                 </div>
+
             </div>
         )
     }
