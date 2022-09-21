@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from'react-router-dom'
 import { editSong } from '../../store/songs'
 import './EditSong.css'
 
@@ -8,6 +9,7 @@ import './EditSong.css'
 
 export default function EditSong({ setModalOpen }) {
     const dispatch = useDispatch()
+    const history = useHistory()
     const song = useSelector((state) => state.song)
     const user = useSelector((state) => state.session.user)
 
@@ -28,6 +30,7 @@ export default function EditSong({ setModalOpen }) {
             return dispatch(editSong({ id, title, description, albumId, url, imageUrl })).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
+                history.push(`/songs/${song.id}`)
             })
         }
         return setErrors(['Error'])

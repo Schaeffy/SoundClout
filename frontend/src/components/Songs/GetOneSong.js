@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { getOneSong } from '../../store/songs'
+import DeleteSongModal from './DeleteSong'
 import EditSongModal from './EditSong'
 import './GetOneSong.css'
 
@@ -48,6 +49,7 @@ export default function SongDetails () {
 
             <div>
                 <EditSongModal />
+                <DeleteSongModal />
             </div>
 
                 <div>
