@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { getAllSongs } from '../../store/songs';
 import CreateSongModal from './CreateSong';
+import  AudioPlayer  from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css'
 
 
 export default function AllSongs() {
@@ -43,7 +45,17 @@ export default function AllSongs() {
 
                 {allSongs.map((song) => {
                     return (
-                        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                        <div>
+                            <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                            <AudioPlayer
+                                autoPlay={false}
+                                src={song.url}
+                                onPlay={e => console.log("onPlay")}
+                            // other props here
+                            />
+                        </div>
+
+
                     )
                 })}
 

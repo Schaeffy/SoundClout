@@ -14,7 +14,6 @@ export default function CreateAlbum({setModalOpen}) {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [albumId, setAlbumId] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [errors, setErrors] = useState([])
 
@@ -25,7 +24,7 @@ export default function CreateAlbum({setModalOpen}) {
         if (user) {
             setModalOpen(false)
 
-            return dispatch(createAlbum({title, description, albumId, imageUrl})).catch(async (res) => {
+            return dispatch(createAlbum({title, description, imageUrl})).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
             })
@@ -54,10 +53,6 @@ export default function CreateAlbum({setModalOpen}) {
                     <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
-                <label>
-                    Album Id
-                    <input type="number" value={albumId} onChange={(e) => setAlbumId(e.target.value)} />
-                </label>
 
                 <label>
                     Image Url

@@ -4,27 +4,32 @@ import { NavLink, useHistory, useParams } from 'react-router-dom'
 import { getOneSong } from '../../store/songs'
 import DeleteSongModal from './DeleteSong'
 import EditSongModal from './EditSong'
+
+import AudioPlayer from 'react-h5-audio-player'
+import 'react-h5-audio-player/lib/styles.css'
+import { actionPlaySong } from '../../store/songPlayer'
+
 import './GetOneSong.css'
 
 
-export default function SongDetails () {
+export default function SongDetails() {
     const dispatch = useDispatch();
-    const {songId} = useParams();
+    const { songId } = useParams();
 
     const song = useSelector((state) => state.song)
     const user = useSelector((state) => state.session.user)
 
     useEffect(() => {
         dispatch(getOneSong(songId))
-    },[dispatch, user, songId])
+    }, [dispatch, user, songId])
 
 
 
     if (!user) {
         return (
-        <div>
-            Error
-        </div>
+            <div>
+                Error
+            </div>
         )
     }
     if (!song.id) {
@@ -35,7 +40,7 @@ export default function SongDetails () {
         )
     }
 
-    if(!song.Artist || !song.Album) {
+    if (!song.Artist || !song.Album) {
         return (
             <div>
                 Erroring
@@ -47,14 +52,20 @@ export default function SongDetails () {
         return (
             <div>
 
-            <div>
-                <EditSongModal />
-                <DeleteSongModal />
-            </div>
+                <div>
+                    <EditSongModal />
+                    <DeleteSongModal />
+                </div>
 
                 <div>
 
-                    <img src={song.imageUrl} alt=''></img>
+                    <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                    {/* <AudioPlayer
+                        autoPlay={false}
+                        src={song.url}
+                        onPlay={e => console.log("onPlay")}
+                    // other props here
+                    /> */}
 
                     <div>
                         Song: {song.title}

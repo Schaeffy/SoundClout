@@ -9,6 +9,7 @@ import AllSongs from "./components/Songs";
 import SongDetails from './components/Songs/GetOneSong'
 import AllAlbums from './components/Albums'
 import AlbumDetails from './components/Albums/GetOneAlbum'
+import SongPlayer from "./components/SongPlayer";
 
 function App() {
   const dispatch = useDispatch();
@@ -43,8 +44,10 @@ function App() {
           <AlbumDetails />
           </Route>
 
+
         </Switch>
       )}
+      <SongPlayer />
     </>
   );
 }
