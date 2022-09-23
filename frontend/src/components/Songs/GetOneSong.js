@@ -40,14 +40,6 @@ export default function SongDetails() {
         )
     }
 
-    if (!song.Artist || !song.Album) {
-        return (
-            <div>
-                Erroring
-            </div>
-        )
-    }
-
     if (song.Artist && song.Album) {
         return (
             <div>
