@@ -1,1 +1,20 @@
 /* TODO Add site wide styles */
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+:root {
+    background-color: #f2f2f2;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0 10%;
+    border-top: 4px solid #f50;
+  }
+  body, footer{
+    width: auto;
+    height: auto;
+    background-color: white;
+  }

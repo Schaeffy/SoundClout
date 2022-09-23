@@ -10,37 +10,47 @@ import SongButton from './SongButton';
 import AlbumButton from './AlbumButton';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <div>
-      <SongButton user={sessionUser} />
-      <AlbumButton user={sessionUser} />
-      <ProfileButton user={sessionUser} />
+      <div className='userNav'>
+
+        <div className='songButton'>
+          <SongButton user={sessionUser} />
+        </div>
+
+        <div className='albumButton'>
+          <AlbumButton user={sessionUser} />
+        </div>
+
+        <div className='profileButton'>
+          <ProfileButton user={sessionUser} />
+        </div>
+
       </div>
     );
   } else {
     sessionLinks = (
       <>
-      <div>
-        <LoginFormModal />
-        <SignupModal />
-        <LoginDemo />
-      </div>
+        <div className='noUserNav'>
+          <LoginFormModal />
+          <SignupModal />
+          <LoginDemo />
+        </div>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
+    <div className="NavBarContainer">
+      <div className='userNav'>
         <NavLink exact to="/">Home</NavLink>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

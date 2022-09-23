@@ -1,9 +1,30 @@
+
+
 .homePage {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    width: auto;
-    height:auto;
+    border:blue solid;
+    min-height: 100%;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    /* background-image: url(https://upload.wikimedia.org/wikipedia/commons/5/5c/Lichfield_Cathedral_Choir_2%2C_Staffordshire%2C_UK_-_Diliff.jpg); */
+
+}
+
+.homePageContainer {
+    background-color: white;
+    width: 80%;
+    border: red solid;
+    margin: 10%;
+    height: 100% !important;
+}
+
+.footer {
+    background-color: orange;
+    bottom: 0;
+    height:60px;
 }

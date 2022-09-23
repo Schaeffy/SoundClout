@@ -1,0 +1,12 @@
+.songPlayerWrapper {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.songPlayer {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+}

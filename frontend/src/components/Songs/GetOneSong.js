@@ -80,7 +80,7 @@ export default function SongDetails() {
                     </div>
 
                     <div>
-                        Album: {song.Album.id}
+                        Album: {song.Album.title}
                     </div>
 
                 </div>

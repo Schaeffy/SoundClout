@@ -68,10 +68,10 @@ export default function EditSong({ setModalOpen }) {
                     <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
-                <label>
+                {/* <label>
                     Album Id
                     <input type="number" value={albumId} onChange={(e) => setAlbumId(e.target.value)} />
-                </label>
+                </label> */}
 
                 <label>
                     Image Url

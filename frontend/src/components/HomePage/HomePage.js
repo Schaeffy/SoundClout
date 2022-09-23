@@ -17,9 +17,15 @@ export function HomePage() {
     if (SignedUser) {
         return (
             <div className="homePage">
-                <h1>
-                    Welcome Back
-                </h1>
+
+                <div className="homePageContainer">
+
+                    <h1>
+                        Welcome Back
+                    </h1>
+
+                </div>
+
             </div>
         )
     }

@@ -43,7 +43,9 @@ export default function AllAlbums() {
 
                 {allAlbums.map((album) => {
                     return (
+                        <div className='albumsContainer' key={album.id}>
                         <NavLink to={`/albums/${album.id}`}>{album.title}</NavLink>
+                        </div>
                     )
                 })}
 
