@@ -24,7 +24,7 @@ export default function CreateSong({ setModalOpen }) {
 
     useEffect(() => {
         dispatch(getAllAlbums())
-    }, [dispatch, user]);
+    }, [dispatch]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -46,6 +46,8 @@ export default function CreateSong({ setModalOpen }) {
     //     setAlbumId(e.target.value)
     // }
 
+    const myAlbums = allAlbums.filter(album => album.userId === user.id)
+
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -60,7 +62,7 @@ export default function CreateSong({ setModalOpen }) {
 
                 <label>
                     Title
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input type="text" value={title} required onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
                 <label>
@@ -87,9 +89,10 @@ export default function CreateSong({ setModalOpen }) {
 
                 <select
                     value={albumId}
+                    required
                     onChange={(e) => setAlbumId(e.target.value)}>
                     <option selected disabled={true} value="">--Choose an Album--</option>
-                    {allAlbums.map(album => {
+                    {myAlbums.map(album => {
 
                         return (
                             <option key={album.id} value={album.id}>{album.title}</option>

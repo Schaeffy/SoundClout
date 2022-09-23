@@ -12,10 +12,8 @@ const initialState = {}
 export const songPlayerReducer = (state = initialState, action) => {
     switch (action.type) {
         case PLAY_SONG:
-            return {
-               ...state,
-               ...action.song
-            }
+            const newState = {...action.song}
+            return newState
         default:
             return state
     }

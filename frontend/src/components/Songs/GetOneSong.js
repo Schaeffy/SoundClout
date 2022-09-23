@@ -80,4 +80,81 @@ export default function SongDetails() {
             </div>
         )
     }
+
+    // if (song.Artist && song.Album && song.Artist.id === user.id) {
+    //     return (
+    //         <div>
+
+    //             <div>
+    //                 <EditSongModal />
+    //                 <DeleteSongModal />
+    //             </div>
+
+    //             <div>
+
+    //                 <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+    //                 {/* <AudioPlayer
+    //                     autoPlay={false}
+    //                     src={song.url}
+    //                     onPlay={e => console.log("onPlay")}
+    //                 // other props here
+    //                 /> */}
+
+    //                 <div>
+    //                     Song: {song.title}
+    //                 </div>
+
+    //                 <div>
+    //                     Artist: {song.Artist.username}
+    //                 </div>
+
+    //                 <div>
+    //                     Description: {song.description}
+    //                 </div>
+
+    //                 <div>
+    //                     Album: {song.Album.title}
+    //                 </div>
+
+    //             </div>
+
+    //         </div>
+    //     )
+    // }
+
+    // if (song.Artist && song.Album && song.Artist.id !== user.id) {
+    //     return (
+    //         <div>
+
+    //             <div>
+
+    //                 <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+    //                 {/* <AudioPlayer
+    //                     autoPlay={false}
+    //                     src={song.url}
+    //                     onPlay={e => console.log("onPlay")}
+    //                 // other props here
+    //                 /> */}
+
+    //                 <div>
+    //                     Song: {song.title}
+    //                 </div>
+
+    //                 <div>
+    //                     Artist: {song.Artist.username}
+    //                 </div>
+
+    //                 <div>
+    //                     Description: {song.description}
+    //                 </div>
+
+    //                 <div>
+    //                     Album: {song.Album.title}
+    //                 </div>
+
+    //             </div>
+
+    //         </div>
+    //     )
+    // }
 }
