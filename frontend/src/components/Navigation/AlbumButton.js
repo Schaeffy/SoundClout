@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import '../Navigation/Navigation.css'
+import './Navigation.css'
 
 export default function AlbumButton({ user }) {
     return (

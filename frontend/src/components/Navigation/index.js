@@ -18,15 +18,42 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <div className='userNav'>
 
-        <div className='songButton'>
+        {/* <div className='navButton'>
           <SongButton user={sessionUser} />
         </div>
 
-        <div className='albumButton'>
+        <div className='navButton'>
           <AlbumButton user={sessionUser} />
         </div>
 
-        <div className='profileButton'>
+        <div className='navButton'>
+          <ProfileButton user={sessionUser} />
+        </div> */}
+
+        <div className='headerLeft'>
+          <div>
+
+          </div>
+          <ul className='headerLeftList'>
+            <li className='headerLeftLink'>
+              <NavLink className='headerLeftItem' to='/'>
+                <img src='https://a-v2.sndcdn.com/assets/images/brand-1b72dd82.svg' alt='' />
+              </NavLink>
+            </li>
+            <li className='headerLeftLink'>
+              <NavLink className='headerLeftItem' to='/'>Home</NavLink>
+            </li>
+            <li className='headerLeftLink'>
+              <NavLink className='headerLeftItem' to='/songs'>Songs
+              </NavLink>
+            </li>
+            <li className='headerLeftLink'>
+              <NavLink className='headerLeftItem' to='/albums'>Albums</NavLink>
+            </li>
+          </ul>
+        </div>
+
+        <div className='headerRight'>
           <ProfileButton user={sessionUser} />
         </div>
 
@@ -47,7 +74,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className="NavBarContainer">
       <div className='userNav'>
-        <NavLink exact to="/">Home</NavLink>
+        {/* <NavLink exact to="/"><button className='homeButton'>Home</button></NavLink> */}
         {isLoaded && sessionLinks}
       </div>
     </div>
