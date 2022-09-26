@@ -40,13 +40,26 @@ View and explore the live site here: [**Soundclout**](https://sound-clout.heroku
 
 ## Features
 
-* Songs
+* Songs  
+  
+A splash page where you can explore some songs, log in as a user, or sign up for a new account.  
+  
+![image](https://user-images.githubusercontent.com/79663621/192253587-269524a3-9361-4bd2-b794-1cbc059f2fb6.png)  
+  
+As a user, you can create, edit, and delete songs as well as albums.  
+  
+![image](https://user-images.githubusercontent.com/79663621/192254027-d780d6ad-a3f9-428f-8ad3-179836e14a5a.png)  
+  
+![image](https://user-images.githubusercontent.com/79663621/192254343-c7fdd1d0-6c09-4333-afc7-197b25c5e11d.png)
+
+
+
+
 * Albums
 
 ## Upcoming Features
 
 * Playlists
-* Splash Page
 * Search
 * Comments
 
