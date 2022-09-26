@@ -14,7 +14,9 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
+  let signed
   if (sessionUser) {
+    signed = true
     sessionLinks = (
       <div className='userNav'>
 
@@ -60,23 +62,37 @@ function Navigation({ isLoaded }) {
       </div>
     );
   } else {
+    signed = false
     sessionLinks = (
-      <>
+
         <div className='noUserNav'>
-          <LoginFormModal />
-          <SignupModal />
+          <div className='noUserNavRight'>
+          <div>
+            <LoginFormModal />
+
+          </div>
+
+          <div>
+            <SignupModal />
+
+          </div>
+          <div>
           <LoginDemo />
+          </div>
+
+          </div>
         </div>
-      </>
+
     );
   }
 
   return (
-    <div className="NavBarContainer">
-      <div className='userNav'>
+    <div className='NavBarContainer'>
+      <div className="NavBar" id={signed ? 'NavBarSigned' : 'NavBarNotSigned'}>
         {/* <NavLink exact to="/"><button className='homeButton'>Home</button></NavLink> */}
         {isLoaded && sessionLinks}
       </div>
+
     </div>
   );
 }

@@ -13,7 +13,7 @@ function LoginDemo() {
     }
     return (
         <div>
-            <button className="LoginDemo" onClick={handleSubmit}>Demo User</button>
+            <button className="loginDemo" onClick={handleSubmit}>Demo User</button>
         </div>
     )
 }

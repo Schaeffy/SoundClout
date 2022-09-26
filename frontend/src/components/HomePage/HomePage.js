@@ -14,6 +14,29 @@ export function HomePage() {
     const SignedUser = useSelector((state) => state.session.user)
     const allSongs = useSelector((state) => state.song);
 
+    if(!SignedUser) {
+        return (
+            <div className="homeNoUser">
+                <div className="background">
+                <div className='background-image'>
+                    <div className="textContainer">
+                        <h2 className='homePageHeaderText'>
+                            What's next in music is first on SoundClout
+                        </h2>
+                        <p className='homePageText'>
+                            Create your first track and begin your journey towards clout and being kinda famous for almost being famous!
+                        </p>
+                        <p>
+                            Sign up or login
+                        </p>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        )
+    }
+
     if (SignedUser) {
         return (
             <div className="homePage">
