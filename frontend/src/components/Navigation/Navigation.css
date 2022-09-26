@@ -74,7 +74,9 @@
     border-bottom: none;
     cursor: pointer;
 }
+.NavBarContainer {
 
+}
 .noUserNav, #NavBarSigned {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -89,7 +91,6 @@
     /* margin-left: 0; */
     padding: 0;
     padding-right: .1%;
-    background-color: black;
 }
 .noUserNavRight {
     display: inline-flex;
@@ -129,17 +130,9 @@
     box-sizing: border-box;
 }
 
-.signupButton {
-    /* margin-right: 5%; */
-}
 
 #NavBarNotSigned {
     position: absolute;
-    background-color: transparent;
-    /* width: 80%; */
+    width: 69.5%;
     padding-right: .5%;
-}
-
-.NavBarContainer {
-    width: 100%;
 }

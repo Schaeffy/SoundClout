@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { getAllAlbums } from '../../store/albums';
+import { getAllAlbums, actionResetAlbums } from '../../store/albums';
 import CreateAlbumModal from './CreateAlbum';
+import './Albums.css'
 
 
 export default function AllAlbums() {
@@ -14,6 +15,7 @@ export default function AllAlbums() {
 
     useEffect(() => {
         dispatch(getAllAlbums())
+        return () => dispatch(actionResetAlbums())
     }, [dispatch, user]);
 
 
@@ -33,7 +35,7 @@ export default function AllAlbums() {
         return (
             <div>
 
-                <div>
+                <div className='createAlbumContainer'>
                     <CreateAlbumModal />
                 </div>
 

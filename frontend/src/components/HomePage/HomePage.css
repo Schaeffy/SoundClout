@@ -15,6 +15,7 @@
 
 }
 
+
 .homePageContainer {
     background-color: white;
     width: 80%;
@@ -31,11 +32,12 @@
 
 
 .background-image {
-    background-image: url(../../images/home-page-background.jpg);
+    background-image: url(https://a-v2.sndcdn.com/assets/images/sc_landing_header_web_featured_artists-8081257b.jpg);
     width: 100%;
     background-repeat: no-repeat;
     background-size: 100%;
     height: 450px;
+    overflow: hidden;
 }
 
 .textContainer {
@@ -53,7 +55,8 @@
 .homePageHeaderText {
     margin-top: 9%;
     margin-bottom: 8px;
-    font-size: 36px;
+    /* font-size: 36px; */
+    font-size: calc(3vw + 3vh);
     font-weight: 100;
 }
 

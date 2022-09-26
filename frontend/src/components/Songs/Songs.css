@@ -5,7 +5,14 @@
     justify-content: left;
     padding-left: 5%;
     padding-right: 5%;
-    gap: 5%
+    gap: 1%
+}
+
+.createSongContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 5px;
+    margin-right: 5px;
 }
 
 .songCardContainer {
@@ -15,14 +22,17 @@
     align-items: center;
     height: 15em;
     width: 10em;
-    border: blue solid ;
+    margin-bottom: 2%;
 
 
     /* margin: 1% 1%; */
 }
 
+.titleContainer {
+    text-align: center;
+}
+
 .songCardInnerContainer {
-    border: red solid ;
     width: 90%;
     height: 90%;
     align-content: center;
@@ -37,7 +47,43 @@
     height: 10em;
 }
 
-.songInfo {
+.songCardImage:hover {
+    cursor: pointer;
+}
+
+.songLink {
+    text-decoration: none;
+    font-weight: 100;
+    color: black;
+}
+.playButtonContainer {
+    display:none;
+    position: absolute;
     align-items: center;
-    justify-content: center;;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.songCardContainer:hover .playButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#playButton {
+    height: 50px;
+    width: 50px;
+}
+
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 30px;
+    gap: 30px;
+    padding-bottom: 1%;
+
 }

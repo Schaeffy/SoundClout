@@ -1,0 +1,12 @@
+.CreateSongButton {
+    width: fit-content;
+    height: fit-content;
+    background-color: #f50;
+    border-color: #f50;
+    color: whitesmoke;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+}

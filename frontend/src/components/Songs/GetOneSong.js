@@ -25,13 +25,6 @@ export default function SongDetails() {
 
 
 
-    if (!user) {
-        return (
-            <div>
-                Error
-            </div>
-        )
-    }
     if (!song.id) {
         return (
             <div>

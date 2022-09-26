@@ -85,7 +85,7 @@ router.post('/:songId/comments', restoreUser, requireAuth, async (req, res) => {
 
 // Get all songs
 
-router.get('/', restoreUser, requireAuth, async (req, res) => {
+router.get('/', restoreUser, async (req, res) => {
 
     let { page, size, title, createdAt } = req.query
 
@@ -142,7 +142,7 @@ router.get('/current', restoreUser, requireAuth, async (req, res) => {
 
 // Get a Song by Id
 
-router.get('/:songId', restoreUser, requireAuth, async (req, res) => {
+router.get('/:songId', restoreUser,  async (req, res) => {
 
     const songId = req.params.songId
 

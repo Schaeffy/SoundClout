@@ -8,7 +8,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
+/*
+    animation: slide;
+    animation-duration: .5s; */
+/*
+    top: -100%;
+    opacity: 0;
+    transition: top 0.4s, opacity 0.4s; */
   }
+
+  /* @keyframes slide {
+    0% {bottom:900px}
+  } */
 
   #modal-background {
     position: fixed;
@@ -16,10 +28,18 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgb(245, 245, 245, .9);
   }
 
   #modal-content {
     position: absolute;
     background-color:white;
+    display: flex;
+    flex-flow: column nowrap;
+    height: fit-content;
+    width: fit-content;
+    /* padding: 5% 0; */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    align-items: center;
+
   }

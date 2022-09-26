@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createSong } from '../../store/songs'
 import { getAllAlbums } from '../../store/albums';
 import './CreateSong.css'
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -12,6 +13,7 @@ export default function CreateSong({ setModalOpen }) {
     const user = useSelector(state => state.session.user)
     const albums = useSelector((state) => state.album)
     const allAlbums = Object.values(albums)
+    const history = useHistory()
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -26,20 +28,23 @@ export default function CreateSong({ setModalOpen }) {
         dispatch(getAllAlbums())
     }, [dispatch]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         setErrors([])
 
         if (user) {
             setModalOpen(false)
-
-            return dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
-                const data = await res.json();
-                if (data && data.errors) setErrors(data.errors)
-            })
         }
+        const created =  await dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors)
+        })
+
+        if (created) history.push('/songs')
         return setErrors(["Error"])
     }
+
+
 
     // const handleChange = (e) => {
     //     setSelectedOption(e.target.value)
@@ -118,7 +123,7 @@ export default function CreateSong({ setModalOpen }) {
 
                 <label>
                     Song Url
-                    <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    <input type="text" required value={url} onChange={(e) => setUrl(e.target.value)} />
                 </label>
 
                 <div>

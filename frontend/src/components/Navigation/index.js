@@ -65,8 +65,8 @@ function Navigation({ isLoaded }) {
     signed = false
     sessionLinks = (
 
-        <div className='noUserNav'>
-          <div className='noUserNavRight'>
+      <div className='noUserNav'>
+        <div className='noUserNavRight'>
           <div>
             <LoginFormModal />
 
@@ -77,11 +77,11 @@ function Navigation({ isLoaded }) {
 
           </div>
           <div>
-          <LoginDemo />
+            <LoginDemo />
           </div>
 
-          </div>
         </div>
+      </div>
 
     );
   }
@@ -94,6 +94,7 @@ function Navigation({ isLoaded }) {
       </div>
 
     </div>
+
   );
 }
 

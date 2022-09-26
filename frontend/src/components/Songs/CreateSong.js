@@ -9,7 +9,7 @@ export default function CreateSongModal () {
     const [modalOpen, setModalOpen] = useState(false);
 
     return (
-        <div>
+        <div className='createSongContainer'>
             <button className='CreateSongButton' onClick={() => setModalOpen(true)}>Create Song</button>
             {modalOpen && (<Modal onClose={()=> setModalOpen(false)}>
                 <CreateSong setModalOpen={setModalOpen}/>

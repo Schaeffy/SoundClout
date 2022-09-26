@@ -12,6 +12,8 @@ const DELETE_A_ALBUM = 'albums/deleteAlbum';
 
 const GET_USER_ALBUMS = 'albums/getUserAlbums';
 
+const RESET_ALBUMS = 'albums/resetAlbums';
+
 
 
 //actions
@@ -66,6 +68,14 @@ const actionDeleteAlbum = (album) => {
     return {
         type: DELETE_A_ALBUM,
         album
+    }
+}
+
+//reset state
+
+export const actionResetAlbums = () => {
+    return {
+        type: RESET_ALBUMS
     }
 }
 
@@ -193,6 +203,10 @@ export const albumReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.album.id]
             return newState
+        }
+
+        case RESET_ALBUMS: {
+            return initialState
         }
 
         default:

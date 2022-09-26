@@ -12,6 +12,8 @@ const DELETE_A_SONG = 'songs/deleteSong';
 
 const GET_USER_SONGS = 'songs/getUserSongs';
 
+const RESET_SONGS = 'songs/resetSongs'
+
 
 
 //actions
@@ -70,6 +72,14 @@ const actionDeleteSong = (song) => {
 }
 
 
+//reset state
+
+export const actionResetSongs = () => {
+    return {
+        type: RESET_SONGS
+    }
+}
+
 
 
 //thunks
@@ -77,7 +87,7 @@ const actionDeleteSong = (song) => {
 //get all songs
 
 export const getAllSongs = () => async dispatch => {
-    const response = await csrfFetch('/api/songs')
+    const response = await fetch('/api/songs')
     if (response.ok) {
         const allSongs = await response.json()
         await dispatch(actionGetSongs(allSongs))
@@ -87,7 +97,7 @@ export const getAllSongs = () => async dispatch => {
 //get one song
 
 export const getOneSong = (songId) => async dispatch => {
-    const response = await csrfFetch(`/api/songs/${songId}`)
+    const response = await fetch(`/api/songs/${songId}`)
     if (response.ok) {
         const oneSong = await response.json()
         await dispatch(actionGetOneSong(oneSong))
@@ -97,7 +107,7 @@ export const getOneSong = (songId) => async dispatch => {
 // get all songs by user
 
 export const getUserSongs = () => async dispatch => {
-    const response = await csrfFetch('/api/songs/current')
+    const response = await fetch('/api/songs/current')
     if (response.ok) {
         const userSongs = await response.json()
         await dispatch(actionGetUserSongs(userSongs))
@@ -193,6 +203,10 @@ export const songReducer = (state = initialState, action) => {
             const newState = { ...state };
             delete newState[action.song.id]
             return newState
+        }
+
+        case RESET_SONGS: {
+            return initialState
         }
 
         default:

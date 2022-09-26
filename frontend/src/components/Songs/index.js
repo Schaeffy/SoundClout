@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { getAllSongs } from '../../store/songs';
+import { getAllSongs, actionResetSongs } from '../../store/songs';
 import CreateSongModal from './CreateSong';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css'
 import './Songs.css'
 import { getAllAlbums } from '../../store/albums';
+import { actionPlaySong } from '../../store/songPlayer'
+
 
 
 export default function AllSongs() {
@@ -16,39 +18,48 @@ export default function AllSongs() {
     const allSongs = Object.values(songs)
     const allAlbums = useSelector((state) => state.album)
 
+    const mySongs = allSongs.filter(song => song.userId === user.id)
+
 
     useEffect(() => {
-        dispatch(getAllSongs())
-    }, [dispatch, user]);
+        dispatch(getAllSongs());
+        return () => dispatch(actionResetSongs())
+    }, [dispatch]);
 
     useEffect(() => {
         dispatch(getAllAlbums())
     },[dispatch])
 
 
-    if (!user) {
-        return (
+    // if (!user) {
+    //     return (
 
-            <div>
+    //         <div>
 
-                <h1>
-                    Error
-                </h1>
+    //             <h1>
+    //                 Error
+    //             </h1>
 
-            </div>
-        )
-    }
+    //         </div>
+    //     )
+    // }
     if (!songs.Album || !songs.Artist) {
         return (
             <div>
 
-                <div>
+                <div className='createSongContainer'>
                     <CreateSongModal />
                 </div>
 
-                <h1>
+                <div className='titleContainer'>
+                <div>
                     All Songs
-                </h1>
+                </div>
+                <div>
+                    My Songs
+                </div>
+
+                </div>
 
                 <div className='allSongsContainer'>
 
@@ -59,6 +70,10 @@ export default function AllSongs() {
                                 <div className='songCardInnerContainer'>
 
                                     <div className='songCardImage'>
+                                    <div className='playButtonContainer'>
+                                        <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt=''/>
+
+                                    </div>
 
                                         <img src={song.imageUrl} alt='' />
 
@@ -67,11 +82,11 @@ export default function AllSongs() {
                                     <div className='songInfo'>
 
                                         <div>
-                                            Title: <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                                            <NavLink className='songLink' to={`/songs/${song.id}`}>{song.title}</NavLink>
                                         </div>
-                                        <div>
+                                        {/* <div>
                                             Artist: {song.Artist.username}
-                                        </div>
+                                        </div> */}
 
                                     </div>
 
