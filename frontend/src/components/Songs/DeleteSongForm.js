@@ -13,7 +13,7 @@ export default function DeleteSong({ setModalOpen }) {
     const song = useSelector((state) => state.song)
     const user = useSelector((state) => state.session.user)
     // const songId = useSelector((state) => state.songId)
-    const {songId} = useParams();
+    const { songId } = useParams();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -24,11 +24,14 @@ export default function DeleteSong({ setModalOpen }) {
 
     return (
         <div className="delete-song">
-            <form onSubmit={handleSubmit}>
-            <h1>Delete {song.title}</h1>
+            <form className='deleteForm' onSubmit={handleSubmit}>
+                <h1>Delete: {song.title}</h1>
 
-            <button type='submit'>Delete Song</button>
-            <button onClick={() => setModalOpen(false)}>Cancel</button>
+                <div className="buttonContainer">
+
+                    <button className='DeleteButton' type='submit'>Delete Song</button>
+                    <button className='DeleteButton' onClick={() => setModalOpen(false)}>Cancel</button>
+                </div>
 
             </form>
         </div>

@@ -32,37 +32,37 @@ export default function CreateAlbum({setModalOpen}) {
         return setErrors(['Error'])
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='createAlbumContainer'>
+            <form className='createForm' onSubmit={handleSubmit}>
 
                 <ul>
                     {errors.map((error, i) => (<li key={i}>{error}</li>))}
                 </ul>
 
                 <h1>
-                    Create a Album
+                    Create an Album
                 </h1>
 
                 <label>
-                    Title
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+
+                    <input  placeholder='Title' className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
                 <label>
-                    Description
-                    <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+
+                    <input  placeholder='Description' className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
                 <label>
-                    Image Url
-                    <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+
+                    <input placeholder='Image Url' className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
 
                 <div>
-                    <button type="submit">Create New Album</button>
-                    <button onClick={() => setModalOpen(false)}>Cancel</button>
+                    <button className='createButton' type="submit">Create New Album</button>
+                    <button className='createButton' onClick={() => setModalOpen(false)}>Cancel</button>
                 </div>
 
             </form>

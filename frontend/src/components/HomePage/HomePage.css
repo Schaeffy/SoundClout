@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    border:blue solid;
     min-height: 100%;
     background-color: white;
     width: 100%;
@@ -19,7 +18,6 @@
 .homePageContainer {
     background-color: white;
     width: 80%;
-    border: red solid;
     margin: 10%;
     height: 100% !important;
 }
@@ -67,4 +65,34 @@
 
 .background {
     height: 450px;
+}
+
+
+.songCardImage:hover {
+    cursor: pointer;
+}
+
+.songLink {
+    text-decoration: none;
+    font-weight: 100;
+    color: black;
+}
+.playButtonContainer {
+    display:none;
+    position: absolute;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+
+}
+
+.songCardContainer:hover .playButtonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+#playButton {
+    height: 50px;
+    width: 50px;
 }

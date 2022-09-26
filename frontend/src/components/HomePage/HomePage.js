@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { getAllSongs } from "../../store/songs";
+import { actionResetSongs, getAllSongs } from "../../store/songs";
 import SignupModal from "../SignupFormModal/SignupForm";
 import LoginFormModal from "../LoginFormModal/LoginForm";
 import LoginDemo from "../LoginDemoUser/LoginDemoUser";
 import './HomePage.css'
+import { actionPlaySong } from '../../store/songPlayer';
 
 
 
@@ -17,6 +18,7 @@ export function HomePage() {
 
     useEffect(() => {
         dispatch(getAllSongs())
+        return () => dispatch(actionResetSongs())
     }, [dispatch]);
 
     if (!SignedUser) {
@@ -43,37 +45,45 @@ export function HomePage() {
                 <div className='musicContainer'>
                     <h1>Hear what is new from the Clout Community</h1>
 
-                    <div className='allSongsContainer'>
+                    <div>
 
-                        {allSongs.map((song) => {
-                            return (
-                                <div className='songCardContainer' key={song.id}>
+                        <div className='allSongsContainer'>
 
-                                    <div className='songCardInnerContainer'>
+                            {allSongs.map((song) => {
+                                return (
+                                    <div className='songCardContainer' key={song.id}>
 
-                                        <div className='songCardImage'>
+                                        <div className='songCardInnerContainer'>
 
-                                            <img src={song.imageUrl} alt='' />
+                                            <div className='songCardImage'>
+                                                <div className='playButtonContainer'>
+                                                    <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
 
-                                        </div>
+                                                </div>
 
-                                        <div className='songInfo'>
+                                                <img src={song.imageUrl} alt='' />
 
-                                            <div>
-                                                Title: <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
                                             </div>
-                                            <div>
-                                                Artist: {song.Artist.username}
+
+                                            <div className='songInfo'>
+
+                                                <div>
+                                                    <NavLink className='songLink' to={`/songs/${song.id}`}>{song.title}</NavLink>
+                                                </div>
+                                                {/* <div>
+                                                    Artist: {song.Artist.username}
+                                                </div> */}
+
                                             </div>
 
                                         </div>
 
                                     </div>
 
-                                </div>
+                                )
+                            })}
 
-                            )
-                        })}
+                        </div>
 
                     </div>
                 </div>

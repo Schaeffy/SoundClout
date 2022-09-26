@@ -11,7 +11,7 @@ export default function EditSongModal() {
 
     return (
         <div>
-            <button onClick={() => setModalOpen(true)}>Edit Song</button>
+            <button className='editButton' onClick={() => setModalOpen(true)}>Edit Song</button>
             {modalOpen && (<Modal onClose={()=> setModalOpen(false)}>
                 <EditSong setModalOpen={setModalOpen}/>
             </Modal>)}

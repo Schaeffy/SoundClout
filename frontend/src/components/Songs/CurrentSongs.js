@@ -11,7 +11,7 @@ import { actionPlaySong } from '../../store/songPlayer'
 
 
 
-export default function AllSongs() {
+export default function UsersSongs() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const songs = useSelector((state) => state.song)
@@ -19,8 +19,7 @@ export default function AllSongs() {
     const allAlbums = useSelector((state) => state.album)
     const history = useHistory()
 
-    // const userSongs = allSongs.filter(song => song.userId === user.id)
-    let mySongs
+    const userSongs = allSongs.filter(song => song.userId === user.id)
 
 
     useEffect(() => {
@@ -38,7 +37,7 @@ export default function AllSongs() {
             history.push('/')
         )
     }
-    if (!songs.Album || !songs.Artist) {
+    if (user) {
         return (
             <div>
 
@@ -58,7 +57,7 @@ export default function AllSongs() {
 
                 <div className='allSongsContainer'>
 
-                    {allSongs.map((song) => {
+                    {userSongs.map((song) => {
                         return (
                             <div className='songCardContainer' key={song.id}>
 
@@ -74,9 +73,9 @@ export default function AllSongs() {
 
                                     </div>
 
-                                    <div key={song.id} className='songInfo'>
+                                    <div className='songInfo'>
 
-                                        <div key={song.id}>
+                                        <div>
                                             <NavLink className='songLink' to={`/songs/${song.id}`}>{song.title}</NavLink>
                                         </div>
                                         {/* <div>

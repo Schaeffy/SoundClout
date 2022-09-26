@@ -11,7 +11,7 @@ export default function DeleteSongModal() {
 
     return (
         <div>
-            <button onClick={() => setModalOpen(true)}>Delete Song</button>
+            <button className='DeleteButton' onClick={() => setModalOpen(true)}>Delete Song</button>
             {modalOpen && (<Modal onClose={()=> setModalOpen(false)}>
                 <DeleteSong setModalOpen={setModalOpen}/>
             </Modal>)}

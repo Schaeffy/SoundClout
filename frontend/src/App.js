@@ -10,6 +10,8 @@ import SongDetails from './components/Songs/GetOneSong'
 import AllAlbums from './components/Albums'
 import AlbumDetails from './components/Albums/GetOneAlbum'
 import SongPlayer from "./components/SongPlayer";
+import UsersSongs from "./components/Songs/CurrentSongs";
+import UsersAlbums from "./components/Albums/CurrentAlbums";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,16 +35,25 @@ function App() {
             <AllSongs />
           </Route>
 
-          <Route exact path ='/songs/:songId'>
-          <SongDetails />
+          <Route exact path='/songs/current'>
+            <UsersSongs />
           </Route>
+
+          <Route exact path='/songs/:songId'>
+            <SongDetails />
+          </Route>
+
 
           <Route exact path='/albums'>
             <AllAlbums />
           </Route>
 
-          <Route exact path ='/albums/:albumId'>
-          <AlbumDetails />
+          <Route exact path='/albums/current'>
+            <UsersAlbums />
+          </Route>
+
+          <Route exact path='/albums/:albumId'>
+            <AlbumDetails />
           </Route>
 
 

@@ -1,0 +1,103 @@
+.DeleteButton {
+    width: fit-content;
+    height: fit-content;
+    background-color: #f50;
+    border-color: #f50;
+    color: whitesmoke;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+
+.EditButton {
+    width: fit-content;
+    height: fit-content;
+    background-color: #f50;
+    border-color: #f50;
+    color: whitesmoke;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.editText {
+    align-items: center;
+    text-align: center;
+}
+.EditAlbumButton {
+    width: fit-content;
+    height: fit-content;
+    background-color: #f50;
+    border-color: #f50;
+    color: whitesmoke;
+    font-size: 16px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.EditAlbumContainer {
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: left;
+    justify-content: left;
+    padding: 0 20px 20px;
+}
+
+.signupButton {
+    background-color: #f50;
+    border-color: #f50;
+    color: #fff;
+}
+
+.editForm {
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: left;
+    justify-content: left;
+    padding: 0 20px 20px;
+}
+
+.inputField {
+    margin-top: 5%;
+
+    width: 100%;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 7px 8px;
+
+}
+
+.selectInputField {
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 70%;
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 24px;
+    padding: 7px 8px;
+
+}
+
+.editButton {
+    background-color: #f50;
+    border-color: #f50;
+    color: #fff;
+    font-size: 16px;
+    height: 40px;
+    line-height: 18px;
+    padding: 10px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5%;
+}

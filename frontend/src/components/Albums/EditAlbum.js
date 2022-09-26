@@ -11,7 +11,7 @@ export default function EditAlbumModal() {
 
     return (
         <div>
-            <button onClick={() => setModalOpen(true)}>Edit Album</button>
+            <button className='EditButton' onClick={() => setModalOpen(true)}>Edit Album</button>
             {modalOpen && (<Modal onClose={()=> setModalOpen(false)}>
                 <EditAlbum setModalOpen={setModalOpen}/>
             </Modal>)}

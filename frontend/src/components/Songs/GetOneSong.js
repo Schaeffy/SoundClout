@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useHistory, useParams } from 'react-router-dom'
-import { getOneSong } from '../../store/songs'
+import { actionResetSongs, getOneSong } from '../../store/songs'
 import DeleteSongModal from './DeleteSong'
 import EditSongModal from './EditSong'
 
@@ -21,28 +21,64 @@ export default function SongDetails() {
 
     useEffect(() => {
         dispatch(getOneSong(songId))
+        return () => dispatch(actionResetSongs())
     }, [dispatch, user, songId])
 
 
 
     if (!song.id) {
+        return null
+    }
+
+    if (song.Artist && song.Album && (!user || song.Artist.id !== user.id)) {
         return (
             <div>
-                Another Error
+                <div className='songContainer'>
+
+                    <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                    {/* <AudioPlayer
+                        autoPlay={false}
+                        src={song.url}
+                        onPlay={e => console.log("onPlay")}
+                    // other props here
+                    /> */}
+                    <div className='songDetailsContainer'>
+                        <div className='songDetailsInfo'>
+                            Song: {song.title}
+                        </div>
+
+                        <div className='songDetailsInfo'>
+                            Album: {song.Album.title}
+                        </div>
+
+                        <div className='songDetailsInfo'>
+                            Artist: {song.Artist.username}
+                        </div>
+
+                        <div className='songDetailsInfo'>
+                            Description: {song.description}
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
             </div>
         )
     }
 
-    if (song.Artist && song.Album) {
+    if (song.Artist && song.Album && user && (song.Artist.id === user.id)) {
         return (
             <div>
 
-                <div>
+                <div className='buttonContainer'>
                     <EditSongModal />
                     <DeleteSongModal />
                 </div>
 
-                <div>
+                <div className='songContainer'>
 
                     <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
                     {/* <AudioPlayer
@@ -52,20 +88,23 @@ export default function SongDetails() {
                     // other props here
                     /> */}
 
-                    <div>
-                        Song: {song.title}
-                    </div>
+                    <div className='songDetailsContainer'>
+                        <div className='songDetailsInfo'>
+                            Song: {song.title}
+                        </div>
 
-                    <div>
-                        Artist: {song.Artist.username}
-                    </div>
+                        <div className='songDetailsInfo'>
+                            Album: {song.Album.title}
+                        </div>
 
-                    <div>
-                        Description: {song.description}
-                    </div>
+                        <div className='songDetailsInfo'>
+                            Artist: {song.Artist.username}
+                        </div>
 
-                    <div>
-                        Album: {song.Album.title}
+                        <div className='songDetailsInfo'>
+                            Description: {song.description}
+                        </div>
+
                     </div>
 
                 </div>
@@ -73,47 +112,6 @@ export default function SongDetails() {
             </div>
         )
     }
-
-    // if (song.Artist && song.Album && song.Artist.id === user.id) {
-    //     return (
-    //         <div>
-
-    //             <div>
-    //                 <EditSongModal />
-    //                 <DeleteSongModal />
-    //             </div>
-
-    //             <div>
-
-    //                 <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
-    //                 {/* <AudioPlayer
-    //                     autoPlay={false}
-    //                     src={song.url}
-    //                     onPlay={e => console.log("onPlay")}
-    //                 // other props here
-    //                 /> */}
-
-    //                 <div>
-    //                     Song: {song.title}
-    //                 </div>
-
-    //                 <div>
-    //                     Artist: {song.Artist.username}
-    //                 </div>
-
-    //                 <div>
-    //                     Description: {song.description}
-    //                 </div>
-
-    //                 <div>
-    //                     Album: {song.Album.title}
-    //                 </div>
-
-    //             </div>
-
-    //         </div>
-    //     )
-    // }
 
     // if (song.Artist && song.Album && song.Artist.id !== user.id) {
     //     return (

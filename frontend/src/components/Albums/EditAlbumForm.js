@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { editAlbum } from '../../store/albums'
 import { getOneAlbum } from '../../store/albums'
 import './EditAlbum.css'
@@ -26,7 +26,7 @@ export default function EditAlbum({ setModalOpen }) {
         return () => {
             dispatch(getOneAlbum(id))
         }
-    },[dispatch, id])
+    }, [dispatch, id])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -45,38 +45,40 @@ export default function EditAlbum({ setModalOpen }) {
         return setErrors(['Error'])
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='EditAlbumContainer'>
+            <form className='editForm' onSubmit={handleSubmit}>
 
                 <ul>
                     {errors.map((error, i) => (<li key={i}>{error}</li>))}
                 </ul>
+                <div className='editText'>
+                    <h1>
+                        Edit Album
+                    </h1>
 
-                <h1>
-                    Edit Album
-                </h1>
+                </div>
 
-                <label>
+                <label className="inputField" >
                     Title
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
-                <label>
+                <label className="inputField" >
                     Description
-                    <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <input className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
-                <label>
+                <label className="inputField" >
                     Image Url
-                    <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
 
-            <div>
-                <button type="submit">Update Album</button>
-                <button onClick={() => setModalOpen(false)}>Cancel</button>
-            </div>
+                <div>
+                    <button className='editButton' type="submit">Update Album</button>
+                    <button className='editButton' onClick={() => setModalOpen(false)}>Cancel</button>
+                </div>
 
 
             </form>

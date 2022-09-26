@@ -1,19 +1,20 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Link} from 'react-router-dom'
+import { NavLink, useHistory, Link } from 'react-router-dom'
 import { getAllAlbums, actionResetAlbums } from '../../store/albums';
 import CreateAlbumModal from './CreateAlbum';
-import { getAllSongs, actionResetSongs } from '../../store/songs';
 import './Albums.css'
+import { getAllSongs, actionResetSongs } from '../../store/songs';
 
 
-export default function AllAlbums() {
+export default function UsersAlbums() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const albums = useSelector((state) => state.album)
     const allAlbums = Object.values(albums)
     const history = useHistory()
-    const song = useSelector((state) => state.song)
+
+    const userAlbums = allAlbums.filter(album => album.userId === user.id)
 
 
     useEffect(() => {
@@ -23,8 +24,8 @@ export default function AllAlbums() {
 
     useEffect(() => {
         dispatch(getAllSongs());
+        return () => dispatch(actionResetSongs())
     }, [dispatch]);
-
 
 
     if (!user) {
@@ -52,7 +53,7 @@ export default function AllAlbums() {
 
                 <div className='allAlbumsContainer'>
 
-                    {allAlbums.map((album) => {
+                    {userAlbums.map((album) => {
                         return (
                             <div className='albumCardContainer' key={album.id}>
 
@@ -64,9 +65,8 @@ export default function AllAlbums() {
 
                                         </div>
                                         <Link to={`/albums/${album.id}`}>
-                                        <img src={album.imageUrl} alt='' />
+                                            <img src={album.imageUrl} alt='' />
                                         </Link>
-
                                     </div>
 
                                     <div key={album.id} className='albumInfo'>

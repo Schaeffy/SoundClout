@@ -11,7 +11,7 @@ export default function DeleteAlbumModal() {
 
     return (
         <div>
-            <button onClick={() => setModalOpen(true)}>Delete Album</button>
+            <button className='DeleteButton' onClick={() => setModalOpen(true)}>Delete Album</button>
             {modalOpen && (<Modal onClose={()=> setModalOpen(false)}>
                 <DeleteAlbum setModalOpen={setModalOpen}/>
             </Modal>)}

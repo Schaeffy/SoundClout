@@ -35,7 +35,7 @@ export default function CreateSong({ setModalOpen }) {
         if (user) {
             setModalOpen(false)
         }
-        const created =  await dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
+        const created = await dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) setErrors(data.errors)
         })
@@ -54,8 +54,8 @@ export default function CreateSong({ setModalOpen }) {
     const myAlbums = allAlbums.filter(album => album.userId === user.id)
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='CreateSongContainer'>
+            <form className="createForm"  onSubmit={handleSubmit}>
 
                 <ul>
                     {errors.map((error, i) => (<li key={i}>{error}</li>))}
@@ -64,16 +64,19 @@ export default function CreateSong({ setModalOpen }) {
                 <h1>
                     Create a Song
                 </h1>
+                <div>
+                    <label  className="inputField">
 
-                <label>
-                    Title
-                    <input type="text" value={title} required onChange={(e) => setTitle(e.target.value)} />
-                </label>
+                        <input type="text" value={title} placeholder='Title' required onChange={(e) => setTitle(e.target.value)} />
+                    </label>
 
-                <label>
-                    Description
-                    <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-                </label>
+                </div>
+                <div>
+                    <label  className="inputField">
+                        <input type="text" value={description} placeholder='Description' onChange={(e) => setDescription(e.target.value)} />
+                    </label>
+
+                </div>
 
                 {/* <label>
                     Album Id
@@ -91,19 +94,21 @@ export default function CreateSong({ setModalOpen }) {
                     <option key={album.id} value={album.id}>{album.title}</option>
                 )})}
                 </select> */}
+                <div>
 
-                <select
-                    value={albumId}
-                    required
-                    onChange={(e) => setAlbumId(e.target.value)}>
-                    <option selected disabled={true} value="">--Choose an Album--</option>
-                    {myAlbums.map(album => {
+                    <select className='selectInputField'
+                        value={albumId}
+                        required
+                        onChange={(e) => setAlbumId(e.target.value)}>
+                        <option selected disabled={true} value="">--Choose an Album--</option>
+                        {myAlbums.map(album => {
 
-                        return (
-                            <option key={album.id} value={album.id}>{album.title}</option>
-                        )
-                    })}
-                </select>
+                            return (
+                                <option key={album.id} value={album.id}>{album.title}</option>
+                            )
+                        })}
+                    </select>
+                </div>
 
                 {/* <select
                     value={selectedOption}
@@ -115,20 +120,23 @@ export default function CreateSong({ setModalOpen }) {
                 </select> */}
 
 
+                <div>
 
-                <label>
-                    Image Url
-                    <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
-                </label>
-
-                <label>
-                    Song Url
-                    <input type="text" required value={url} onChange={(e) => setUrl(e.target.value)} />
-                </label>
+                    <label  className="inputField">
+                        <input type="text" value={imageUrl}  placeholder='Image Url' onChange={(e) => setImageUrl(e.target.value)} />
+                    </label>
+                </div>
 
                 <div>
-                    <button type="submit">Create New Song</button>
-                    <button onClick={() => setModalOpen(false)}>Cancel</button>
+
+                    <label  className="inputField">
+                        <input type="text" required value={url}  placeholder='Song Url' onChange={(e) => setUrl(e.target.value)} />
+                    </label>
+                </div>
+
+                <div>
+                    <button className='createButton' type="submit">Create New Song</button>
+                    <button className='createButton'  onClick={() => setModalOpen(false)}>Cancel</button>
                 </div>
 
             </form>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from'react-router-dom'
-import { editSong } from '../../store/songs'
+import { useHistory } from 'react-router-dom'
+import { actionResetSongs, editSong } from '../../store/songs'
 import { getOneSong } from '../../store/songs'
 import './EditSong.css'
 
@@ -24,11 +24,7 @@ export default function EditSong({ setModalOpen }) {
 
     useEffect(() => {
         dispatch(getOneSong(id))
-
-        return () => {
-            dispatch(getOneSong(id))
-        }
-    },[dispatch, id])
+    }, [dispatch, id])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -47,8 +43,8 @@ export default function EditSong({ setModalOpen }) {
         return setErrors(['Error'])
     }
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
+        <div className='EditSongContainer'>
+            <form className='editForm' onSubmit={handleSubmit}>
 
                 <ul>
                     {errors.map((error, i) => (<li key={i}>{error}</li>))}
@@ -57,36 +53,46 @@ export default function EditSong({ setModalOpen }) {
                 <h1>
                     Edit Song
                 </h1>
+                <div>
+                    <label className="inputField" >
+                        Title
+                        <input className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    </label>
+                </div>
 
-                <label>
-                    Title
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                </label>
+                <div>
+                    <label className="inputField" >
+                        Description
+                        <input className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    </label>
 
-                <label>
-                    Description
-                    <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-                </label>
+                </div>
 
                 {/* <label>
                     Album Id
                     <input type="number" value={albumId} onChange={(e) => setAlbumId(e.target.value)} />
                 </label> */}
 
-                <label>
-                    Image Url
-                    <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
-                </label>
+                <div>
 
-                <label>
-                    Song Url
-                    <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-                </label>
+                    <label className="inputField" >
+                        Image Url
+                        <input className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                    </label>
+                </div>
 
-            <div>
-                <button type="submit">Update Song</button>
-                <button onClick={() => setModalOpen(false)}>Cancel</button>
-            </div>
+                <div>
+                    <label className="inputField" >
+                        Song Url
+                        <input className="inputField" type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    </label>
+
+                </div>
+
+                <div>
+                    <button className='createButton' type="submit">Update Song</button>
+                    <button className='createButton' onClick={() => setModalOpen(false)}>Cancel</button>
+                </div>
 
 
             </form>
