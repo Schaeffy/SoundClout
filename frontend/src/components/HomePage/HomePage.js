@@ -98,8 +98,47 @@ export function HomePage() {
                 <div className="homePageContainer">
 
                     <h1>
-                        Welcome Back
+                        Welcome Back!
+                        Here's some music to get started.
                     </h1>
+
+                    <div className='allSongsContainer'>
+
+                            {allSongs.map((song) => {
+                                return (
+                                    <div className='songCardContainer' key={song.id}>
+
+                                        <div className='songCardInnerContainer'>
+
+                                            <div className='songCardImage'>
+                                                <div className='playButtonContainer'>
+                                                    <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
+
+                                                </div>
+
+                                                <img src={song.imageUrl} alt='' />
+
+                                            </div>
+
+                                            <div className='songInfo'>
+
+                                                <div>
+                                                    <NavLink className='songLink' to={`/songs/${song.id}`}>{song.title}</NavLink>
+                                                </div>
+                                                {/* <div>
+                                                    Artist: {song.Artist.username}
+                                                </div> */}
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                )
+                            })}
+
+                        </div>
 
                 </div>
 
