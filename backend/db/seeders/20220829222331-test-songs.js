@@ -92,6 +92,30 @@ module.exports = {
         url: 'https://cdn.pixabay.com/download/audio/2022/09/22/audio_14e9964c5f.mp3?filename=blessed-120698.mp3',
         imageUrl:'https://cdn.pixabay.com/audio/2022/09/24/09-19-03-222_200x200.jpeg',
       },
+      {
+        albumId: 7,
+        userId: 1,
+        title: 'A Fourth Song',
+        description: 'Song 4',
+        url: 'https://cdn.pixabay.com/download/audio/2022/09/22/audio_14e9964c5f.mp3?filename=blessed-120698.mp3',
+        imageUrl:'https://cdn.pixabay.com/audio/2022/09/24/09-19-03-222_200x200.jpeg',
+      },
+      {
+        albumId: 7,
+        userId: 1,
+        title: 'A Fifth Song',
+        description: 'Song 5',
+        url: 'https://cdn.pixabay.com/download/audio/2022/09/22/audio_14e9964c5f.mp3?filename=blessed-120698.mp3',
+        imageUrl:'https://cdn.pixabay.com/audio/2022/09/24/09-19-03-222_200x200.jpeg',
+      },
+      {
+        albumId: 7,
+        userId: 1,
+        title: 'A Sixth Song',
+        description: 'Song 6',
+        url: 'https://cdn.pixabay.com/download/audio/2022/09/22/audio_14e9964c5f.mp3?filename=blessed-120698.mp3',
+        imageUrl:'https://cdn.pixabay.com/audio/2022/09/24/09-19-03-222_200x200.jpeg',
+      },
      ])
   },
 
