@@ -39,7 +39,8 @@ function Navigation({ isLoaded }) {
           <ul className='headerLeftList'>
             <li className='headerLeftLink'>
               <NavLink className='headerLeftItem' to='/'>
-                <img src='https://a-v2.sndcdn.com/assets/images/brand-1b72dd82.svg' alt='' />
+                <img id='cloutLogo' src='https://i.imgur.com/uGly1pK.png' alt='' />
+
               </NavLink>
             </li>
             <li className='headerLeftLink'>
@@ -66,6 +67,9 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
 
       <div className='noUserNav'>
+        <div className='noUserNavLeft'>
+            <img  id='cloutLogo' src='https://i.imgur.com/uGly1pK.png' alt='' />
+        </div>
         <div className='noUserNavRight'>
           <div>
             <LoginFormModal />
