@@ -1,20 +1,30 @@
 /* TODO Add site wide styles */
 * {
   font-family: Interstate, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Garuda, Verdana, Tahoma, sans-serif;
+
 }
 
 :root {
-    background-color: #f2f2f2;
-    height: 100%;
-    width: 100%;
+  background-color: #f2f2f2;
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  min-width: 1080px;
+  margin: auto;
+  bottom: 0;
 }
 
 body {
-    margin: 0 15%;
-    border-top: 4px solid #f50;
-  }
-  body, footer{
-    width: auto;
-    height: auto;
-    background-color: white;
-  }
+  /* background-color: #f2f2f2; */
+  margin: 0 15%;
+  border-top: 4px solid #f50;
+  /* min-height: 100vh; */
+
+}
+
+body,
+footer {
+  width: auto;
+  height: auto;
+  background-color: white;
+}

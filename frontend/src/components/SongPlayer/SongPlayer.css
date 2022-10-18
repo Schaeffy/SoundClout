@@ -3,6 +3,9 @@
     align-items: center;
     align-content: center;
     justify-content: center;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
 }
 
 .songPlayer {

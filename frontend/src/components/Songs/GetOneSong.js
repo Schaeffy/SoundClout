@@ -73,39 +73,58 @@ export default function SongDetails() {
         return (
             <div>
 
-                <div className='buttonContainer'>
-                    <EditSongModal />
-                    <DeleteSongModal />
-                </div>
+
 
                 <div className='songContainer'>
 
-                    <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
-                    {/* <AudioPlayer
+                    <div className='songDetailsContainer'>
+
+                        <div className='songInfoContainer'>
+
+                            <div className='songDetailsInfo'>
+                                Song: {song.title}
+                            </div>
+
+                            <div className='songDetailsInfo'>
+                                Album: {song.Album.title}
+                            </div>
+
+                            <div className='songDetailsInfo'>
+                                Artist: {song.Artist.username}
+                            </div>
+
+                            <div className='songDetailsInfo'>
+                                Description: {song.description}
+                            </div>
+
+                        </div>
+
+                        {/* <div className='songImage'> */}
+
+                            <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                            {/* <AudioPlayer
                         autoPlay={false}
                         src={song.url}
                         onPlay={e => console.log("onPlay")}
                     // other props here
                     /> */}
+                        {/* </div> */}
 
-                    <div className='songDetailsContainer'>
-                        <div className='songDetailsInfo'>
-                            Song: {song.title}
-                        </div>
+                    </div>
 
-                        <div className='songDetailsInfo'>
-                            Album: {song.Album.title}
+                    <div className='artistDetailsContainer'>
+
+                        <div className='buttonContainer'>
+                            <EditSongModal />
+                            <DeleteSongModal />
                         </div>
 
                         <div className='songDetailsInfo'>
                             Artist: {song.Artist.username}
                         </div>
 
-                        <div className='songDetailsInfo'>
-                            Description: {song.description}
-                        </div>
-
                     </div>
+
 
                 </div>
 

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { actionResetSongs, editSong } from '../../store/songs'
 import { getOneSong } from '../../store/songs'
+import { getAllAlbums } from '../../store/albums';
+import { useParams } from 'react-router-dom'
 import './EditSong.css'
 
 
@@ -12,6 +14,9 @@ export default function EditSong({ setModalOpen }) {
     const dispatch = useDispatch()
     const history = useHistory()
     const song = useSelector((state) => state.song)
+    const albums = useSelector((state) => state.album)
+    const allAlbums = Object.values(albums)
+    const user = useSelector(state => state.session.user)
     // const user = useSelector((state) => state.session.user)
 
     const [id, setId] = useState(song.id)
@@ -22,9 +27,18 @@ export default function EditSong({ setModalOpen }) {
     const [imageUrl, setImageUrl] = useState(song.imageUrl)
     const [errors, setErrors] = useState([])
 
+    console.log(song)
+    console.log(albumId)
+
     useEffect(() => {
         dispatch(getOneSong(id))
+        return () => dispatch(getOneSong(id))
     }, [dispatch, id])
+
+
+    useEffect(() => {
+        dispatch(getAllAlbums())
+    }, [dispatch]);
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -38,10 +52,13 @@ export default function EditSong({ setModalOpen }) {
                 // history.push(`/songs/${song.id}`)
             })
             // dispatch(editSong({ id, title, description, albumId, url, imageUrl }))
-            // history.push(`/songs/${id}`)
         }
+        // history.push(`/songs/${id}`)
         return setErrors(['Error'])
     }
+
+    const myAlbums = allAlbums.filter(album => album.userId === user.id)
+
     return (
         <div className='EditSongContainer'>
             <form className='editForm' onSubmit={handleSubmit}>
@@ -72,6 +89,23 @@ export default function EditSong({ setModalOpen }) {
                     Album Id
                     <input type="number" value={albumId} onChange={(e) => setAlbumId(e.target.value)} />
                 </label> */}
+
+                <div>
+
+                    <select className='selectInputField'
+                        value={albumId}
+                        required
+                        onChange={(e) => setAlbumId(e.target.value)}>
+                        {/* <option disabled={true} value="">--Choose an Album--</option> */}
+
+                        {myAlbums.map(album => {
+
+                            return (
+                                <option key={album.id} value={album.id}>{album.title}</option>
+                            )
+                        })}
+                    </select>
+                </div>
 
                 <div>
 
