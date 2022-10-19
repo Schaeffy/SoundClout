@@ -24,7 +24,6 @@ export function HomePage() {
     if (!SignedUser) {
         return (
             <div className="homeNoUser">
-                <div className="background">
                     <div className='background-image'>
                         <div className="textContainer">
                             <h2 className='homePageHeaderText'>
@@ -38,9 +37,8 @@ export function HomePage() {
                                 Sign up or login
                             </p>
                         </div>
-
                     </div>
-                </div>
+
 
                 <div className='musicContainer'>
                     <h1>Hear what is new from the Clout Community</h1>

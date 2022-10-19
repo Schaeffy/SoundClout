@@ -86,7 +86,6 @@
 
 .NavBarContainer {}
 
-.noUserNav,
 #NavBarSigned {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -104,20 +103,36 @@
     /* max-width: 600px; */
 }
 
+#NavBarNotSigned {
+    background-color: black;
+    width: 100%;
+
+
+
+}
+
+.noUserNav {
+    display: inline-flex;
+    width: 100%;
+    height: 50px;
+
+}
+
 .noUserNavRight {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    right: 0;
+    width: 50%;
 
 }
 
 .noUserNavLeft {
     display: flex;
-    position: relative;
     align-items: left;
     justify-content: left;
-    margin-left: 0;
-    margin-right: 35%;
+    left: 0;
+    width:50%;
 
 }
 
@@ -156,11 +171,7 @@
 }
 
 
-#NavBarNotSigned {
-    position: absolute;
-    width: 69.5%;
-    padding-right: .5%;
-}
+
 
 
 #profileButton {

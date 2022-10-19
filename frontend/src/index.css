@@ -10,6 +10,7 @@
   height: 100%;
   width: 100%;
   min-width: 1080px;
+  max-width: 1440px;
   margin: auto;
   bottom: 0;
 }
@@ -27,4 +28,22 @@ footer {
   width: auto;
   height: auto;
   background-color: white;
+}
+
+@media (max-width: 1430px) {
+  body {
+    margin: 0 10%;
+  }
+}
+
+@media (max-width: 1260px) {
+  body {
+    margin: 0 5%
+  }
+}
+
+@media (max-width: 1079px) {
+  body {
+    margin: 0 auto
+  }
 }
