@@ -27,7 +27,7 @@ export default function EditSong({ setModalOpen }) {
     const [imageUrl, setImageUrl] = useState(song.imageUrl)
     const [errors, setErrors] = useState([])
 
-    console.log(song)
+    console.log("song state data:", song)
     console.log(albumId)
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export default function EditSong({ setModalOpen }) {
         if (song) {
             setModalOpen(false)
 
-            return dispatch(editSong({ id, title, description, albumId, url, imageUrl })).catch(async (res) => {
+            return dispatch(editSong({ id, title, description, albumId:+albumId, url, imageUrl })).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
                 // history.push(`/songs/${song.id}`)

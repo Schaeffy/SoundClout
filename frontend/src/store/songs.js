@@ -140,6 +140,8 @@ export const editSong = (song) => async dispatch => {
     if (response.ok) {
         const editedSong = await response.json()
         await dispatch(actionEditSong(editedSong))
+        console.log("EDITED SONG:", editedSong)
+        console.log("Song:", song)
         return editedSong
     }
 }

@@ -257,6 +257,10 @@ router.put('/:songId', restoreUser, requireAuth, async (req, res) => {
         song.url = url
     }
 
+    if (albumId) {
+        song.albumId = albumId
+    }
+
     await song.save()
     res.status(200).json(song)
 
