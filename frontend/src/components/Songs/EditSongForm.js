@@ -27,8 +27,6 @@ export default function EditSong({ setModalOpen }) {
     const [imageUrl, setImageUrl] = useState(song.imageUrl)
     const [errors, setErrors] = useState([])
 
-    console.log("song state data:", song)
-    console.log(albumId)
 
     useEffect(() => {
         dispatch(getOneSong(id))
@@ -46,7 +44,7 @@ export default function EditSong({ setModalOpen }) {
         if (song) {
             setModalOpen(false)
 
-            return dispatch(editSong({ id, title, description, albumId:+albumId, url, imageUrl })).catch(async (res) => {
+            return dispatch(editSong({ id, title, description, albumId: +albumId, url, imageUrl })).catch(async (res) => {
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
                 // history.push(`/songs/${song.id}`)
@@ -70,58 +68,57 @@ export default function EditSong({ setModalOpen }) {
                 <h1>
                     Edit Song
                 </h1>
-                <div>
-                    <label className="inputField" >
-                        Title
-                        <input className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    </label>
-                </div>
 
-                <div>
-                    <label className="inputField" >
-                        Description
-                        <input className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
-                    </label>
+                <label>
+                    <input className="inputField" type="text" value={title} placeholder={title|| "Enter a title"} onChange={(e) => setTitle(e.target.value)} />
+                </label>
 
-                </div>
+
+
+                <label>
+
+                    <input className="inputField" type="text" value={description} placeholder={description|| "Enter a description"} onChange={(e) => setDescription(e.target.value)} />
+                </label>
+
+
 
                 {/* <label>
                     Album Id
                     <input type="number" value={albumId} onChange={(e) => setAlbumId(e.target.value)} />
                 </label> */}
 
-                <div>
 
-                    <select className='selectInputField'
-                        value={albumId}
-                        required
-                        onChange={(e) => setAlbumId(e.target.value)}>
-                        {/* <option disabled={true} value="">--Choose an Album--</option> */}
 
-                        {myAlbums.map(album => {
+                <select className='selectInputField'
+                    value={albumId}
+                    required
+                    onChange={(e) => setAlbumId(e.target.value)}>
+                    {/* <option disabled={true} value="">--Choose an Album--</option> */}
 
-                            return (
-                                <option key={album.id} value={album.id}>{album.title}</option>
-                            )
-                        })}
-                    </select>
-                </div>
+                    {myAlbums.map(album => {
 
-                <div>
+                        return (
+                            <option key={album.id} value={album.id}>{album.title}</option>
+                        )
+                    })}
+                </select>
 
-                    <label className="inputField" >
-                        Image Url
-                        <input className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
-                    </label>
-                </div>
 
-                <div>
-                    <label className="inputField" >
-                        Song Url
-                        <input className="inputField" type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-                    </label>
 
-                </div>
+
+                <label>
+
+                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl|| "Enter an imageUrl"} onChange={(e) => setImageUrl(e.target.value)} />
+                </label>
+
+
+
+                <label>
+
+                    <input className="inputField" type="text" value={url} placeholder={url|| "Enter a url"} onChange={(e) => setUrl(e.target.value)} />
+                </label>
+
+
 
                 <div>
                     <button className='createButton' type="submit">Update Song</button>

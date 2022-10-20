@@ -67,7 +67,6 @@
     padding: 0;
     width: 100%;
     height: 100%;
-    padding-right: .1%;
 }
 
 .albumButton,
@@ -99,7 +98,6 @@
     line-height: 1.5;
     /* margin-left: 0; */
     padding: 0;
-    padding-right: .1%;
     /* max-width: 600px; */
 }
 

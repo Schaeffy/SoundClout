@@ -64,19 +64,18 @@ export default function CreateSong({ setModalOpen }) {
                 <h1>
                     Create a Song
                 </h1>
-                <div>
-                    <label  className="inputField">
 
-                        <input type="text" value={title} placeholder='Title' required onChange={(e) => setTitle(e.target.value)} />
+                    <label  >
+                        <input type="text" value={title} placeholder='Title' className="inputField" required onChange={(e) => setTitle(e.target.value)} />
                     </label>
 
-                </div>
-                <div>
-                    <label  className="inputField">
-                        <input type="text" value={description} placeholder='Description' onChange={(e) => setDescription(e.target.value)} />
+
+
+                    <label>
+                        <input type="text" value={description} placeholder='Description' className="inputField" onChange={(e) => setDescription(e.target.value)} />
                     </label>
 
-                </div>
+
 
                 {/* <label>
                     Album Id
@@ -94,7 +93,7 @@ export default function CreateSong({ setModalOpen }) {
                     <option key={album.id} value={album.id}>{album.title}</option>
                 )})}
                 </select> */}
-                <div>
+
 
                     <select className='selectInputField'
                         value={albumId}
@@ -108,7 +107,7 @@ export default function CreateSong({ setModalOpen }) {
                             )
                         })}
                     </select>
-                </div>
+
 
                 {/* <select
                     value={selectedOption}
@@ -120,19 +119,19 @@ export default function CreateSong({ setModalOpen }) {
                 </select> */}
 
 
-                <div>
 
-                    <label  className="inputField">
-                        <input type="text" value={imageUrl}  placeholder='Image Url' onChange={(e) => setImageUrl(e.target.value)} />
+
+                    <label>
+                        <input type="text" value={imageUrl}  placeholder='Image Url' className="inputField" onChange={(e) => setImageUrl(e.target.value)} />
                     </label>
-                </div>
 
-                <div>
 
-                    <label  className="inputField">
-                        <input type="text" required value={url}  placeholder='Song Url' onChange={(e) => setUrl(e.target.value)} />
+
+
+                    <label>
+                        <input type="text" required value={url}  placeholder='Song Url' className="inputField" onChange={(e) => setUrl(e.target.value)} />
                     </label>
-                </div>
+
 
                 <div>
                     <button className='createButton' type="submit">Create New Song</button>

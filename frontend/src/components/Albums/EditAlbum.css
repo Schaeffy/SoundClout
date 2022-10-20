@@ -44,9 +44,10 @@
 
     display: flex;
     flex-flow: column nowrap;
-    align-items: left;
-    justify-content: left;
-    padding: 0 20px 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 20px;
+    width: 400px;
 }
 
 .signupButton {
@@ -56,33 +57,20 @@
 }
 
 .editForm {
-
+    width: 100%;
     display: flex;
     flex-flow: column nowrap;
-    align-items: left;
-    justify-content: left;
-    padding: 0 20px 20px;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 20px 20px; */
 }
 
 .inputField {
     margin-top: 5%;
-
     width: 100%;
     /* border: 1px solid #ccc; */
     border-radius: 5px;
     font-size: 18px;
-    line-height: 24px;
-    padding: 7px 8px;
-
-}
-
-.selectInputField {
-    margin-top: 5%;
-    margin-left: 15%;
-    width: 70%;
-    /* border: 1px solid #ccc; */
-    border-radius: 5px;
-    font-size: 12px;
     line-height: 24px;
     padding: 7px 8px;
 

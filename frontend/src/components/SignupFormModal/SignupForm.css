@@ -4,17 +4,29 @@
     color: #fff;
 }
 
+/* .formContainer {
+    width: 400px;
+    max-width: 400px;
+} */
+
 .signupForm {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
     padding: 0 20px 20px;
+    width: 400px;
+}
+
+.signUpLabels {
+    width: 80%;
+    /* margin: 0 0 10%; */
+    /* left: 0; */
 }
 
 .inputField {
-    width: 100%;
-    order: 1px solid #ccc;
+    width: 50%;
+    border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 18px;
     line-height: 24px;
@@ -34,4 +46,10 @@
     cursor: pointer;
     width: 100%;
     margin-top: 10%;
+}
+
+.signUpErrors > ul > li{
+    color: red;
+    text-decoration: none;
+    list-style: none;
 }

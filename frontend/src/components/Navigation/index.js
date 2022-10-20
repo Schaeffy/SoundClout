@@ -40,6 +40,9 @@ function Navigation({ isLoaded }) {
             <li className='headerLeftLink'>
               <NavLink className='headerLeftItem' to='/'>
                 <img id='cloutLogo' src='https://i.imgur.com/uGly1pK.png' alt='' />
+                {/* <img id='cloutLogo' src='https://imgur.com/Rmuvso8.png' alt='' /> */}
+
+
 
               </NavLink>
             </li>

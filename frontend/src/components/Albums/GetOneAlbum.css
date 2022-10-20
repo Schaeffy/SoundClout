@@ -1,19 +1,26 @@
 .albumContainer {
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding-top: 10%;
-    padding-bottom: 20%;
+    text-align: left;
+    padding: 3%;
+    background: linear-gradient(to top right, #ffcba8, #b5baff);
 }
 
 .albumDetailsContainer {
-    margin-top: 5%;
+    padding-left: 3%;
 }
 
 
 .albumDetailsInfo {
     margin-top: 3%;
+
+}
+
+#albumSongLinks {
+    text-decoration: none;
+    list-style: none;
 }
 
 
@@ -36,7 +43,8 @@
     justify-content: center;
     text-align: center;
     align-items: center;
-    margin-top: 5%;
+    margin-top: 3%;
+    margin-bottom: 3%;
     column-gap: 5%;
 }
 

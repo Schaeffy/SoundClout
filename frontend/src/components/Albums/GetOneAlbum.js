@@ -57,8 +57,8 @@ export default function AlbumDetails() {
                         <div className='albumDetailsInfo'>
                             Songs: {album.Songs.map((song) => {
                                 return (
-                                    <div key={song.id}>
-                                        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                                    <div key={song.id} >
+                                        <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>{song.title}</NavLink>
                                     </div>
                                 )
                             })}
@@ -78,10 +78,7 @@ export default function AlbumDetails() {
         return (
             <div>
 
-                <div className='buttonContainer'>
-                    <EditAlbumModal />
-                    <DeleteAlbumModal />
-                </div>
+
 
                 <div className='albumContainer'>
 
@@ -111,7 +108,7 @@ export default function AlbumDetails() {
                             Songs: {album.Songs.map((song) => {
                                 return (
                                     <div key={song.id}>
-                                        <NavLink to={`/songs/${song.id}`}>{song.title}</NavLink>
+                                        <NavLink to={`/songs/${song.id}` } id='albumSongLinks'> - {song.title}</NavLink>
                                     </div>
                                 )
                             })}
@@ -119,6 +116,11 @@ export default function AlbumDetails() {
 
                     </div>
 
+                </div>
+
+                <div className='buttonContainer'>
+                    <EditAlbumModal />
+                    <DeleteAlbumModal />
                 </div>
 
             </div>

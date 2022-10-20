@@ -84,15 +84,24 @@ module.exports = (sequelize, DataTypes) => {
     firstName:{
       type:DataTypes.STRING,
       allowNull: false,
-      validate:{
-        isAlpha: true
+      validate: {
+        isAlpha(value) {
+          if (Validator.isAlpha(value) === false) {
+            throw new Error("First name must be alphabetic")
+          }
+        }
       }
+
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate:{
-        isAlpha: true
+      validate: {
+        isAlpha(value) {
+          if (Validator.isAlpha(value) === false) {
+            throw new Error("Last name must be alphabetic")
+          }
+        }
       }
     },
     email: {

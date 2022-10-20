@@ -10,6 +10,7 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -23,10 +24,13 @@ function LoginForm() {
 
   return (
     <div className="loginModal">
+
       <form className='loginForm' onSubmit={handleSubmit}>
 
         <div>
-        <h1>Sign in</h1>
+
+          <h1>Sign in</h1>
+
           <label>
 
             <input className="inputField"
@@ -36,10 +40,8 @@ function LoginForm() {
               onChange={(e) => setCredential(e.target.value)}
               required
             />
-          </label>
 
-        </div>
-        <div>
+          </label>
 
           <label>
 
@@ -50,20 +52,26 @@ function LoginForm() {
               onChange={(e) => setPassword(e.target.value)}
               required
             />
+
           </label>
-        </div>
-        <div>
-        <div>
-          {errors.map((error, idx) => (
-            <div className="errors" key={idx}>{error}</div>
-          ))}
-        </div>
 
         </div>
+
+
         <div>
 
+          <div>
+            {errors.map((error, idx) => (
+              <div className="errors" key={idx}>{error}</div>
+            ))}
+          </div>
+
+        </div>
+
+        <div>
           <button className="LoginSubmitButton" type="submit">Continue</button>
         </div>
+
       </form>
 
     </div>

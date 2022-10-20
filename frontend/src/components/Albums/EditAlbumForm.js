@@ -51,6 +51,7 @@ export default function EditAlbum({ setModalOpen }) {
                 <ul>
                     {errors.map((error, i) => (<li key={i}>{error}</li>))}
                 </ul>
+
                 <div className='editText'>
                     <h1>
                         Edit Album
@@ -58,19 +59,18 @@ export default function EditAlbum({ setModalOpen }) {
 
                 </div>
 
-                <label className="inputField" >
-                    Title
+                <label>
                     <input className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
-                <label className="inputField" >
-                    Description
+                <label>
+
                     <input className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
-                <label className="inputField" >
-                    Image Url
+                <label>
+
                     <input className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
