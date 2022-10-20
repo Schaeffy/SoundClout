@@ -48,8 +48,14 @@
     margin-top: 10%;
 }
 
+
+.signUpErrors > ul {
+    padding-left: 0;
+}
+
 .signUpErrors > ul > li{
     color: red;
     text-decoration: none;
     list-style: none;
+    text-align: left;
 }

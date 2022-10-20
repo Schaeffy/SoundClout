@@ -6,7 +6,7 @@ import CreateSongModal from './CreateSong';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css'
 import './Songs.css'
-import { getAllAlbums } from '../../store/albums';
+import { getAllAlbums, actionResetAlbums } from '../../store/albums';
 import { actionPlaySong } from '../../store/songPlayer'
 
 
@@ -20,6 +20,7 @@ export default function UsersSongs() {
     const history = useHistory()
 
     const userSongs = allSongs.filter(song => song.userId === user.id)
+    console.log(userSongs)
 
 
     useEffect(() => {
@@ -29,7 +30,8 @@ export default function UsersSongs() {
 
     useEffect(() => {
         dispatch(getAllAlbums())
-    },[dispatch])
+        // return () => dispatch(actionResetAlbums());
+    }, [dispatch])
 
 
     if (!user) {
@@ -46,12 +48,12 @@ export default function UsersSongs() {
                 </div>
 
                 <div className='titleContainer'>
-                <NavLink className='titleText' to='/songs'>
-                    All Songs
+                    <NavLink className='titleText' to='/songs'>
+                        All Songs
                     </NavLink>
-                <NavLink className='titleText' to='/songs/current'>
-                    My Songs
-                </NavLink>
+                    <NavLink className='titleText' to='/songs/current'>
+                        My Songs
+                    </NavLink>
 
                 </div>
 
@@ -64,10 +66,10 @@ export default function UsersSongs() {
                                 <div className='songCardInnerContainer'>
 
                                     <div className='songCardImage'>
-                                    <div className='playButtonContainer'>
-                                        <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt=''/>
+                                        <div className='playButtonContainer'>
+                                            <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
 
-                                    </div>
+                                        </div>
 
                                         <img src={song.imageUrl} alt='' />
 

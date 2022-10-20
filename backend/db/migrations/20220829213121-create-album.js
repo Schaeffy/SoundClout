@@ -19,7 +19,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       imageUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'https://cdn4.iconfinder.com/data/icons/public-sign-part03/100/_-14-512.png'
       },
       createdAt: {
         allowNull: false,

@@ -38,7 +38,7 @@ export default function AllSongs() {
             history.push('/')
         )
     }
-    if (!songs.Album || !songs.Artist) {
+    if (!songs.Album && !songs.Artist) {
         return (
             <div>
 

@@ -1,6 +1,6 @@
 .DeleteButton {
-    width: fit-content;
-    height: fit-content;
+    width: 120px;
+    height: 50px;
     background-color: #f50;
     border-color: #f50;
     color: whitesmoke;
@@ -8,12 +8,14 @@
     padding: 10px 15px;
     border-radius: 3px;
     cursor: pointer;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.EditButton {
-    width: fit-content;
-    height: fit-content;
+.editButton {
+    width: 120px;
+    height: 50px;
     background-color: #f50;
     border-color: #f50;
     color: whitesmoke;
@@ -74,18 +76,4 @@
     line-height: 24px;
     padding: 7px 8px;
 
-}
-
-.editButton {
-    background-color: #f50;
-    border-color: #f50;
-    color: #fff;
-    font-size: 16px;
-    height: 40px;
-    line-height: 18px;
-    padding: 10px 15px;
-    border-radius: 3px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 5%;
 }

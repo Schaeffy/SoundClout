@@ -17,7 +17,7 @@ export default function SongPlayer() {
     return (
         <div className="songPlayerWrapper">
             <div className='songPlayer'>
-                <AudioPlayer
+                <AudioPlayer className='player'
                     src={songUrl}
                     autoPlay={false}
                     onPlay={(e) => console.log("onPlay")}

@@ -20,15 +20,19 @@ body {
   margin: 0 15%;
   border-top: 4px solid #f50;
   /* min-height: 100vh; */
+  height: 100vh;
+  background-color: white;
+  overflow-y: scroll;
+  padding-bottom: 90px;
 
 }
 
-body,
+/* body,
 footer {
   width: auto;
   height: auto;
   background-color: white;
-}
+} */
 
 @media (max-width: 1430px) {
   body {

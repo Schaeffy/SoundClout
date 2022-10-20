@@ -19,6 +19,23 @@ export default function EditAlbum({ setModalOpen }) {
     const [description, setDescription] = useState(album.description)
     const [imageUrl, setImageUrl] = useState(album.imageUrl)
     const [errors, setErrors] = useState([])
+    const [displayErrors, setDisplayErrors] = useState(false);
+
+    let validate = () => {
+        let validationErrors = [];
+
+        if (title.length > 256) validationErrors.push('Title cannot exceed 256 characters')
+        if (!title) validationErrors.push('Album must have a title')
+        if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
+        if (!description) validationErrors.push('Album must have a description')
+
+        setErrors(validationErrors);
+
+        if (validationErrors.length) setDisplayErrors(true)
+
+        return validationErrors
+
+    }
 
     useEffect(() => {
         dispatch(getOneAlbum(id))
@@ -28,29 +45,36 @@ export default function EditAlbum({ setModalOpen }) {
         }
     }, [dispatch, id])
 
+
+    useEffect(() => {
+        if (displayErrors) validate()
+    }, [title, description])
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        setErrors([])
-        if (album) {
-            setModalOpen(false)
+        if (!errors.length) {
+            setErrors([])
+            setDisplayErrors(false)
+            let validationErrors = validate()
 
-            return dispatch(editAlbum({ id, title, description, imageUrl })).catch(async (res) => {
-                const data = await res.json()
-                if (data && data.errors) setErrors(data.errors)
-                // history.push(`/albums/${album.id}`)
-            })
-            // dispatch(editAlbum({ id, title, description, albumId, url, imageUrl }))
+            if (validationErrors.length) return
+            if (!errors.length){
+                setModalOpen(false)
+
+                return dispatch(editAlbum({ id, title, description, imageUrl })).catch(async (res) => {
+                    const data = await res.json()
+                    if (data && data.errors) setErrors(data.errors)
+                    // history.push(`/albums/${album.id}`)
+                })
+                // dispatch(editAlbum({ id, title, description, albumId, url, imageUrl }))
+            }
             // history.push(`/albums/${id}`)
         }
-        return setErrors(['Error'])
+        return errors
     }
     return (
         <div className='EditAlbumContainer'>
             <form className='editForm' onSubmit={handleSubmit}>
-
-                <ul>
-                    {errors.map((error, i) => (<li key={i}>{error}</li>))}
-                </ul>
 
                 <div className='editText'>
                     <h1>
@@ -60,24 +84,30 @@ export default function EditAlbum({ setModalOpen }) {
                 </div>
 
                 <label>
-                    <input className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input className="inputField" type="text" value={title} placeholder={title || "Enter a title"} required onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
                 <label>
 
-                    <input className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <input className="inputField" type="text" value={description} placeholder={description || "Enter a description"} required onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
                 <label>
 
-                    <input className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl || "Enter a imageUrl"} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
+
+                <div className="signUpErrors">
+                    <ul>
+                        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                </div>
 
 
                 <div>
-                    <button className='editButton' type="submit">Update Album</button>
-                    <button className='editButton' onClick={() => setModalOpen(false)}>Cancel</button>
+                    <button className='createButton' type="submit">Update Album</button>
+                    <button className='createButton' onClick={() => setModalOpen(false)}>Cancel</button>
                 </div>
 
 

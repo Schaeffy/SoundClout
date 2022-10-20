@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createAlbum } from '../../store/albums'
 import { useHistory } from 'react-router-dom'
@@ -6,7 +6,7 @@ import './CreateAlbum.css'
 
 
 
-export default function CreateAlbum({setModalOpen}) {
+export default function CreateAlbum({ setModalOpen }) {
     const dispatch = useDispatch()
     const history = useHistory()
 
@@ -16,41 +16,70 @@ export default function CreateAlbum({setModalOpen}) {
     const [description, setDescription] = useState('')
     const [imageUrl, setImageUrl] = useState('')
     const [errors, setErrors] = useState([])
+    const [displayErrors, setDisplayErrors] = useState(false);
+
+
+    let validate = () => {
+        let validationErrors = [];
+
+        if (title.length > 256) validationErrors.push('Title cannot exceed 256 characters')
+        if (!title) validationErrors.push('Album must have a title')
+        if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
+        if (!description) validationErrors.push('Album must have a description')
+
+        setErrors(validationErrors);
+
+        if (validationErrors.length) setDisplayErrors(true)
+
+        return validationErrors
+
+    }
+
+    useEffect(() => {
+        if (displayErrors) validate()
+    }, [title, description])
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setErrors([])
+        if (!errors.length) {
+            setErrors([])
+            setDisplayErrors(false)
+            let validationErrors = validate()
 
-        if (user) {
-            setModalOpen(false)
+            if (validationErrors.length) return
+            if (!errors.length) {
+                setModalOpen(false)
 
-            return dispatch(createAlbum({title, description, imageUrl})).catch(async (res) => {
-                const data = await res.json()
-                if (data && data.errors) setErrors(data.errors)
-            })
+
+                if (user) {
+                    setModalOpen(false)
+
+                    return dispatch(createAlbum({ title, description, imageUrl })).catch(async (res) => {
+                        const data = await res.json()
+                        if (data && data.errors) setErrors(data.errors)
+                    })
+                }
+                return errors
+            }
         }
-        return setErrors(['Error'])
     }
+
+
     return (
         <div className='createAlbumContainer'>
             <form className='createForm' onSubmit={handleSubmit}>
-
-                <ul>
-                    {errors.map((error, i) => (<li key={i}>{error}</li>))}
-                </ul>
 
                 <h1>
                     Create an Album
                 </h1>
 
                 <label>
-
-                    <input  placeholder='Title' className="inputField" type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input placeholder='Title' className="inputField" type="text" value={title} required onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
                 <label>
 
-                    <input  placeholder='Description' className="inputField" type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <input placeholder='Description' className="inputField" type="text" value={description} required onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
@@ -58,6 +87,12 @@ export default function CreateAlbum({setModalOpen}) {
 
                     <input placeholder='Image Url' className="inputField" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
+
+                <div className="signUpErrors">
+                    <ul>
+                        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                </div>
 
 
                 <div>

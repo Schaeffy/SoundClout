@@ -1,6 +1,6 @@
 .EditButton {
-    width: fit-content;
-    height: fit-content;
+    width: 120px;
+    height: 50px;
     background-color: #f50;
     border-color: #f50;
     color: whitesmoke;
@@ -45,6 +45,7 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
+    padding-bottom: 20px;
 }
 
 .inputField {
@@ -63,7 +64,7 @@
     margin-left: 0%;
     margin-top: 5%;
     /* margin-left: 15%; */
-    width: 100%;
+    /* width: 100%; */
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 12px;

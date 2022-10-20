@@ -137,7 +137,7 @@ export default function SongDetails() {
                         </div>
 
                         <div className='songDetailsInfo'>
-                            Artist: {song.Artist.username}
+                            {/* Artist: {song.Artist.username} */}
                         </div>
 
                     </div>

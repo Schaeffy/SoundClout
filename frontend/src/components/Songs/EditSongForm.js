@@ -26,6 +26,29 @@ export default function EditSong({ setModalOpen }) {
     const [url, setUrl] = useState(song.url)
     const [imageUrl, setImageUrl] = useState(song.imageUrl)
     const [errors, setErrors] = useState([])
+    const [displayErrors, setDisplayErrors] = useState(false);
+
+    let validate = () => {
+        let validationErrors = [];
+
+        if (title.length > 256) validationErrors.push('Title cannot exceed 256 characters')
+        if (!title) validationErrors.push('Song must have a title')
+        if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
+        if (!description) validationErrors.push('Song must have a description')
+        if (!url.slice(-4).includes('.mp3')) validationErrors.push ('Song url must be an mp3 file (ends with .mp3)')
+
+        setErrors(validationErrors);
+
+        if (validationErrors.length) setDisplayErrors(true)
+
+        return validationErrors
+
+    }
+
+
+    useEffect(() => {
+        if (displayErrors) validate()
+    }, [title, description, url])
 
 
     useEffect(() => {
@@ -40,8 +63,13 @@ export default function EditSong({ setModalOpen }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setErrors([])
-        if (song) {
+
+
+        if (!errors.length) {
+            setErrors([])
+            setDisplayErrors(false)
+            let validationErrors = validate()
+            if (validationErrors.length) return
             setModalOpen(false)
 
             return dispatch(editSong({ id, title, description, albumId: +albumId, url, imageUrl })).catch(async (res) => {
@@ -52,7 +80,7 @@ export default function EditSong({ setModalOpen }) {
             // dispatch(editSong({ id, title, description, albumId, url, imageUrl }))
         }
         // history.push(`/songs/${id}`)
-        return setErrors(['Error'])
+        return errors
     }
 
     const myAlbums = allAlbums.filter(album => album.userId === user.id)
@@ -61,23 +89,19 @@ export default function EditSong({ setModalOpen }) {
         <div className='EditSongContainer'>
             <form className='editForm' onSubmit={handleSubmit}>
 
-                <ul>
-                    {errors.map((error, i) => (<li key={i}>{error}</li>))}
-                </ul>
-
                 <h1>
                     Edit Song
                 </h1>
 
                 <label>
-                    <input className="inputField" type="text" value={title} placeholder={title|| "Enter a title"} onChange={(e) => setTitle(e.target.value)} />
+                    <input className="inputField" type="text" value={title} placeholder={title|| "Enter a title"} required onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
 
 
                 <label>
 
-                    <input className="inputField" type="text" value={description} placeholder={description|| "Enter a description"} onChange={(e) => setDescription(e.target.value)} />
+                    <input className="inputField" type="text" value={description} placeholder={description|| "Enter a description"} required onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
@@ -115,9 +139,14 @@ export default function EditSong({ setModalOpen }) {
 
                 <label>
 
-                    <input className="inputField" type="text" value={url} placeholder={url|| "Enter a url"} onChange={(e) => setUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={url} placeholder={url|| "Enter a url"} required onChange={(e) => setUrl(e.target.value)} />
                 </label>
 
+                <div className="signUpErrors">
+                    <ul>
+                        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                </div>
 
 
                 <div>

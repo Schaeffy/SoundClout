@@ -22,6 +22,30 @@ export default function CreateSong({ setModalOpen }) {
     const [imageUrl, setImageUrl] = useState('')
     const [errors, setErrors] = useState([])
     // const [selectedOption, setSelectedOption] = useState('')
+    const [displayErrors, setDisplayErrors] = useState(false);
+
+    let validate = () => {
+        let validationErrors = [];
+
+        if (title.length > 256) validationErrors.push('Title cannot exceed 256 characters')
+        if (!title) validationErrors.push('Song must have a title')
+        if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
+        if (!description) validationErrors.push('Song must have a description')
+        if (!url.slice(-4).includes('.mp3')) validationErrors.push('Song url must be an mp3 file (ends with .mp3)')
+
+        setErrors(validationErrors);
+
+        if (validationErrors.length) setDisplayErrors(true)
+
+        return validationErrors
+
+    }
+
+
+    useEffect(() => {
+        if (displayErrors) validate()
+    }, [title, description, url])
+
 
 
     useEffect(() => {
@@ -30,18 +54,23 @@ export default function CreateSong({ setModalOpen }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        setErrors([])
+        if (!errors.length) {
+            setErrors([])
+            setDisplayErrors(false)
+            let validationErrors = validate()
 
-        if (user) {
-            setModalOpen(false)
+            if (validationErrors.length) return
+            if (!errors.length) {
+                setModalOpen(false)
+
+                const created = await dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
+                    const data = await res.json();
+                    if (data && data.errors) setErrors(data.errors)
+                })
+                if (created) history.push('/songs')
+            }
+            return errors
         }
-        const created = await dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors)
-        })
-
-        if (created) history.push('/songs')
-        return setErrors(["Error"])
     }
 
 
@@ -55,25 +84,22 @@ export default function CreateSong({ setModalOpen }) {
 
     return (
         <div className='CreateSongContainer'>
-            <form className="createForm"  onSubmit={handleSubmit}>
+            <form className="createForm" onSubmit={handleSubmit}>
 
-                <ul>
-                    {errors.map((error, i) => (<li key={i}>{error}</li>))}
-                </ul>
 
                 <h1>
                     Create a Song
                 </h1>
 
-                    <label  >
-                        <input type="text" value={title} placeholder='Title' className="inputField" required onChange={(e) => setTitle(e.target.value)} />
-                    </label>
+                <label  >
+                    <input type="text" value={title} placeholder='Title' className="inputField" required onChange={(e) => setTitle(e.target.value)} />
+                </label>
 
 
 
-                    <label>
-                        <input type="text" value={description} placeholder='Description' className="inputField" onChange={(e) => setDescription(e.target.value)} />
-                    </label>
+                <label>
+                    <input type="text" value={description} placeholder='Description' className="inputField" requried onChange={(e) => setDescription(e.target.value)} />
+                </label>
 
 
 
@@ -95,18 +121,18 @@ export default function CreateSong({ setModalOpen }) {
                 </select> */}
 
 
-                    <select className='selectInputField'
-                        value={albumId}
-                        required
-                        onChange={(e) => setAlbumId(e.target.value)}>
-                        <option selected disabled={true} value="">--Choose an Album--</option>
-                        {myAlbums.map(album => {
+                <select className='selectInputField'
+                    value={albumId}
+                    required
+                    onChange={(e) => setAlbumId(e.target.value)}>
+                    <option selected disabled={true} value="">--Choose an Album--</option>
+                    {myAlbums.map(album => {
 
-                            return (
-                                <option key={album.id} value={album.id}>{album.title}</option>
-                            )
-                        })}
-                    </select>
+                        return (
+                            <option key={album.id} value={album.id}>{album.title}</option>
+                        )
+                    })}
+                </select>
 
 
                 {/* <select
@@ -121,21 +147,27 @@ export default function CreateSong({ setModalOpen }) {
 
 
 
-                    <label>
-                        <input type="text" value={imageUrl}  placeholder='Image Url' className="inputField" onChange={(e) => setImageUrl(e.target.value)} />
-                    </label>
+                <label>
+                    <input type="text" value={imageUrl} placeholder='Image Url' className="inputField" onChange={(e) => setImageUrl(e.target.value)} />
+                </label>
 
 
 
 
-                    <label>
-                        <input type="text" required value={url}  placeholder='Song Url' className="inputField" onChange={(e) => setUrl(e.target.value)} />
-                    </label>
+                <label>
+                    <input type="text" required value={url} placeholder='Song Url' className="inputField" onChange={(e) => setUrl(e.target.value)} />
+                </label>
+
+                <div className="signUpErrors">
+                    <ul>
+                        {errors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                </div>
 
 
                 <div>
                     <button className='createButton' type="submit">Create New Song</button>
-                    <button className='createButton'  onClick={() => setModalOpen(false)}>Cancel</button>
+                    <button className='createButton' onClick={() => setModalOpen(false)}>Cancel</button>
                 </div>
 
             </form>
