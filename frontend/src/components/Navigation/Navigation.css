@@ -175,10 +175,17 @@
 #profileButton {
     background-color: transparent;
     color: whitesmoke;
-    width: fit-content;
+    /* width: fit-content; */
     border:none;
-    width: 15%;
+    width: 75px;
 }
+
+#profileButton:hover {
+    cursor: pointer;
+    color: #fff;
+}
+
+
 
 
 .profile-dropdown {

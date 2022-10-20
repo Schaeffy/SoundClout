@@ -17,7 +17,7 @@ function SignupForm() {
   const [displayErrors, setDisplayErrors] = useState(false);
 
 
-  const validate = () => {
+  let validate = () => {
     let validationErrors = [];
     const reg = RegExp(/^[a-z\d ]+$/i)
 
