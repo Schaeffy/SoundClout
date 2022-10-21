@@ -14,7 +14,7 @@ export default function CreateAlbum({ setModalOpen }) {
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState('https://cdn4.iconfinder.com/data/icons/public-sign-part03/100/_-14-512.png')
     const [errors, setErrors] = useState([])
     const [displayErrors, setDisplayErrors] = useState(false);
 

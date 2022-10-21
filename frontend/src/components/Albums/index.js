@@ -34,7 +34,7 @@ export default function AllAlbums() {
     }
     if (!albums.Album || !albums.Artist) {
         return (
-            <div>
+            <div style={{backgroundColor:'white'}}>
 
                 <div className='createAlbumContainer'>
                     <CreateAlbumModal />

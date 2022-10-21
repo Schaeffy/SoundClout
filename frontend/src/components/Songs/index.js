@@ -40,7 +40,7 @@ export default function AllSongs() {
     }
     if (!songs.Album && !songs.Artist) {
         return (
-            <div>
+            <div style={{backgroundColor:'white'}}>
 
                 <div className='createSongContainer'>
                     <CreateSongModal />

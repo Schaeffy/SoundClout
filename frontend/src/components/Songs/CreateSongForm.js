@@ -19,7 +19,7 @@ export default function CreateSong({ setModalOpen }) {
     const [description, setDescription] = useState('')
     const [albumId, setAlbumId] = useState('')
     const [url, setUrl] = useState('')
-    const [imageUrl, setImageUrl] = useState('')
+    const [imageUrl, setImageUrl] = useState('https://cdn4.iconfinder.com/data/icons/public-sign-part03/100/_-14-512.png')
     const [errors, setErrors] = useState([])
     // const [selectedOption, setSelectedOption] = useState('')
     const [displayErrors, setDisplayErrors] = useState(false);
@@ -61,6 +61,7 @@ export default function CreateSong({ setModalOpen }) {
 
             if (validationErrors.length) return
             if (!errors.length) {
+
                 setModalOpen(false)
 
                 const created = await dispatch(createSong({ title, description, albumId, url, imageUrl })).catch(async (res) => {
