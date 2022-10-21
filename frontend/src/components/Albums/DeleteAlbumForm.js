@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { deleteAlbum } from '../../store/albums'
+import { getAllSongs, actionResetSongs } from '../../store/songs';
 import './DeleteAlbum.css'
 
 
@@ -14,6 +15,11 @@ export default function DeleteAlbum({ setModalOpen }) {
     const user = useSelector((state) => state.session.user)
     // const albumId = useSelector((state) => state.albumId)
     const { albumId } = useParams();
+    const songs = useSelector((state) => state.song)
+
+    useEffect(() => {
+        dispatch(getAllSongs());
+    }, [dispatch]);
 
     const handleSubmit = async (e) => {
         e.preventDefault()

@@ -109,7 +109,7 @@ export default function SongDetails() {
         )
     }
 
-    if (song.Artist && song.Album && user && (song.Artist.id === user.id)) {
+    if (song.Artist && user && (song.Artist.id === user.id)) {
         return (
             <div>
 
@@ -148,7 +148,7 @@ export default function SongDetails() {
                             <div className='songOtherInfoContainer'>
 
                                 <div className='songDetailsInfo'>
-                                    Album: {song.Album.title}
+                                    Album: {song.Album ? song.Album.title : ""}
                                 </div>
 
 
@@ -228,4 +228,6 @@ export default function SongDetails() {
     //         </div>
     //     )
     // }
+
+
 }

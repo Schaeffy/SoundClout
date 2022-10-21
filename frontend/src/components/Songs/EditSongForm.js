@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import { actionResetSongs, editSong } from '../../store/songs'
 import { getOneSong } from '../../store/songs'
-import { getAllAlbums } from '../../store/albums';
+import { getAllAlbums, actionResetAlbums } from '../../store/albums';
 import { useParams } from 'react-router-dom'
 import './EditSong.css'
 
@@ -22,7 +22,7 @@ export default function EditSong({ setModalOpen }) {
     const [id, setId] = useState(song.id)
     const [title, setTitle] = useState(song.title)
     const [description, setDescription] = useState(song.description)
-    const [albumId, setAlbumId] = useState(song.albumId)
+    const [albumId, setAlbumId] = useState('')
     const [url, setUrl] = useState(song.url)
     const [imageUrl, setImageUrl] = useState(song.imageUrl)
     const [errors, setErrors] = useState([])
@@ -35,7 +35,7 @@ export default function EditSong({ setModalOpen }) {
         if (!title) validationErrors.push('Song must have a title')
         if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
         if (!description) validationErrors.push('Song must have a description')
-        if (!url.slice(-4).includes('.mp3')) validationErrors.push ('Song url must be an mp3 file (ends with .mp3)')
+        if (!url.slice(-4).includes('.mp3')) validationErrors.push('Song url must be an mp3 file (ends with .mp3)')
 
         setErrors(validationErrors);
 
@@ -59,6 +59,7 @@ export default function EditSong({ setModalOpen }) {
 
     useEffect(() => {
         dispatch(getAllAlbums())
+        return () => actionResetAlbums()
     }, [dispatch]);
 
     const handleSubmit = (e) => {
@@ -79,7 +80,7 @@ export default function EditSong({ setModalOpen }) {
             })
             // dispatch(editSong({ id, title, description, albumId, url, imageUrl }))
         }
-        // history.push(`/songs/${id}`)
+        history.push(`/songs/${id}`)
         return errors
     }
 
@@ -94,14 +95,14 @@ export default function EditSong({ setModalOpen }) {
                 </h1>
 
                 <label>
-                    <input className="inputField" type="text" value={title} placeholder={title|| "Enter a title"} required onChange={(e) => setTitle(e.target.value)} />
+                    <input className="inputField" type="text" value={title} placeholder={title || "Enter a title"} required onChange={(e) => setTitle(e.target.value)} />
                 </label>
 
 
 
                 <label>
 
-                    <input className="inputField" type="text" value={description} placeholder={description|| "Enter a description"} required onChange={(e) => setDescription(e.target.value)} />
+                    <input className="inputField" type="text" value={description} placeholder={description || "Enter a description"} required onChange={(e) => setDescription(e.target.value)} />
                 </label>
 
 
@@ -115,9 +116,8 @@ export default function EditSong({ setModalOpen }) {
 
                 <select className='selectInputField'
                     value={albumId}
-                    required
                     onChange={(e) => setAlbumId(e.target.value)}>
-                    {/* <option disabled={true} value="">--Choose an Album--</option> */}
+                    <option disabled={true} value="">--Choose an Album--</option>
 
                     {myAlbums.map(album => {
 
@@ -132,14 +132,14 @@ export default function EditSong({ setModalOpen }) {
 
                 <label>
 
-                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl|| "Enter an imageUrl"} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl || "Enter an imageUrl"} onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
 
 
                 <label>
 
-                    <input className="inputField" type="text" value={url} placeholder={url|| "Enter a url"} required onChange={(e) => setUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={url} placeholder={url || "Enter a url"} required onChange={(e) => setUrl(e.target.value)} />
                 </label>
 
                 <div className="signUpErrors">
