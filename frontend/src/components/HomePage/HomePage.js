@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { actionResetSongs, getAllSongs } from "../../store/songs";
 import SignupModal from "../SignupFormModal/SignupForm";
 import LoginFormModal from "../LoginFormModal/LoginForm";
@@ -24,20 +24,20 @@ export function HomePage() {
     if (!SignedUser) {
         return (
             <div className="homeNoUser">
-                    <div className='background-image'>
-                        <div className="textContainer">
-                            <h2 className='homePageHeaderText'>
-                                What's next in music is first on SoundClout
-                            </h2>
+                <div className='background-image'>
+                    <div className="textContainer">
+                        <h2 className='homePageHeaderText'>
+                            What's next in music is first on SoundClout
+                        </h2>
 
-                            <p className='homePageText'>
-                                Create your first track and begin your journey towards clout and being kinda famous for almost being famous!
-                            </p>
-                            <p>
-                                Sign up or login
-                            </p>
-                        </div>
+                        <p className='homePageText'>
+                            Create your first track and begin your journey towards clout and being kinda famous for almost being famous!
+                        </p>
+                        <p>
+                            Sign up or login
+                        </p>
                     </div>
+                </div>
 
 
                 <div className='musicContainer'>
@@ -59,7 +59,9 @@ export function HomePage() {
 
                                                 </div>
 
-                                                <img src={song.imageUrl} alt='' />
+                                                <Link to={`/songs/${song.id}`}>
+                                                    <img src={song.imageUrl} alt='' />
+                                                </Link>
 
                                             </div>
 
@@ -102,41 +104,43 @@ export function HomePage() {
 
                     <div className='allSongsContainer'>
 
-                            {allSongs.map((song) => {
-                                return (
-                                    <div className='songCardContainer' key={song.id}>
+                        {allSongs.map((song) => {
+                            return (
+                                <div className='songCardContainer' key={song.id}>
 
-                                        <div className='songCardInnerContainer'>
+                                    <div className='songCardInnerContainer'>
 
-                                            <div className='songCardImage'>
-                                                <div className='playButtonContainer'>
-                                                    <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
-
-                                                </div>
-
-                                                <img src={song.imageUrl} alt='' />
+                                        <div className='songCardImage'>
+                                            <div className='playButtonContainer'>
+                                                <img id='playButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
 
                                             </div>
 
-                                            <div className='songInfo'>
+                                            <Link to={`/songs/${song.id}`}>
+                                                <img src={song.imageUrl} alt='' />
+                                            </Link>
 
-                                                <div>
-                                                    <NavLink className='songLink' to={`/songs/${song.id}`}>{song.title}</NavLink>
-                                                </div>
-                                                {/* <div>
+                                        </div>
+
+                                        <div className='songInfo'>
+
+                                            <div>
+                                                <NavLink className='songLink' to={`/songs/${song.id}`}>{song.title}</NavLink>
+                                            </div>
+                                            {/* <div>
                                                     Artist: {song.Artist.username}
                                                 </div> */}
-
-                                            </div>
 
                                         </div>
 
                                     </div>
 
-                                )
-                            })}
+                                </div>
 
-                        </div>
+                            )
+                        })}
+
+                    </div>
 
                 </div>
 

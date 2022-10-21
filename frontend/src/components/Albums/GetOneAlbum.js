@@ -35,7 +35,7 @@ export default function AlbumDetails() {
                 <div className='albumContainer'>
 
                     <div className='albumDetailsContainer'>
-                        <img src={album.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(album))}></img>
+                        <img src={album.imageUrl} alt=''></img>
                         {/* <AudioPlayer
                         autoPlay={false}
                         src={album.url}
@@ -60,7 +60,7 @@ export default function AlbumDetails() {
                                 Songs: {album.Songs.map((song) => {
                                     return (
                                         <div key={song.id} >
-                                            <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>{song.title}</NavLink>
+                                            <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>- {song.title}</NavLink>
                                         </div>
                                     )
                                 })}
@@ -73,8 +73,6 @@ export default function AlbumDetails() {
 
                     </div>
 
-
-
                 </div>
 
             </div>
@@ -85,12 +83,10 @@ export default function AlbumDetails() {
         return (
             <div>
 
-
-
                 <div className='albumContainer'>
 
                     <div className='albumDetailsContainer'>
-                        <img src={album.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(album))}></img>
+                        <img src={album.imageUrl} alt=''></img>
                         {/* <AudioPlayer
     autoPlay={false}
     src={album.url}
@@ -115,7 +111,7 @@ export default function AlbumDetails() {
                                 Songs: {album.Songs.map((song) => {
                                     return (
                                         <div key={song.id} >
-                                            <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>{song.title}</NavLink>
+                                            <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>- {song.title}</NavLink>
                                         </div>
                                     )
                                 })}

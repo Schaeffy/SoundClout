@@ -26,9 +26,9 @@ module.exports = {
     },
     {
       userId: 3,
-      title: 'Let It Enfold You',
-      description: 'Let It Enfold You is the debut studio album by American post-hardcore band Senses Fail, released on September 7, 2004, through Vagrant Records.',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/3/32/Let_it_enfold_you.jpg'
+      title: 'Three Cheers For Sweet Revenge',
+      description: 'Three Cheers for Sweet Revenge is the second studio album by American rock band My Chemical Romance, released on June 8, 2004, by Reprise Records.',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/5/54/Three_Cheers_for_Sweet_Revenge.png'
     },
     {
       userId: 3,

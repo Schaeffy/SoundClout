@@ -27,11 +27,12 @@ export default function CreateSong({ setModalOpen }) {
     let validate = () => {
         let validationErrors = [];
 
-        if (title.length > 256) validationErrors.push('Title cannot exceed 256 characters')
         if (!title) validationErrors.push('Song must have a title')
+        if (title.length > 256) validationErrors.push('Title cannot exceed 256 characters')
         if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
         if (!description) validationErrors.push('Song must have a description')
         if (!url.slice(-4).includes('.mp3')) validationErrors.push('Song url must be an mp3 file (ends with .mp3)')
+        if (!allAlbums.filter(album => album.userId === user.id).length) validationErrors.push('Please create an album first')
 
         setErrors(validationErrors);
 
@@ -122,9 +123,8 @@ export default function CreateSong({ setModalOpen }) {
                 </select> */}
 
 
-                <select className='selectInputField'
+                <select className='selectSongInputField'
                     value={albumId}
-                    required
                     onChange={(e) => setAlbumId(e.target.value)}>
                     <option selected disabled={true} value="">--Choose an Album--</option>
                     {myAlbums.map(album => {

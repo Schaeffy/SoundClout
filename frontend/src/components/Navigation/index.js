@@ -41,9 +41,6 @@ function Navigation({ isLoaded }) {
               <NavLink className='headerLeftItem' to='/'>
                 <img id='cloutLogo' src='https://i.imgur.com/uGly1pK.png' alt='' />
                 {/* <img id='cloutLogo' src='https://imgur.com/Rmuvso8.png' alt='' /> */}
-
-
-
               </NavLink>
             </li>
             <li className='headerLeftLink'>
@@ -71,7 +68,10 @@ function Navigation({ isLoaded }) {
 
       <div className='noUserNav'>
         <div className='noUserNavLeft'>
-            <img  id='cloutLogo' src='https://i.imgur.com/uGly1pK.png' alt='' />
+          <NavLink className='noUserNavLeft' to='/'>
+            <img id='cloutLogo' src='https://i.imgur.com/uGly1pK.png' alt='' />
+
+          </NavLink>
         </div>
         <div className='noUserNavRight'>
           <div>

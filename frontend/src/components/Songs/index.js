@@ -6,7 +6,7 @@ import CreateSongModal from './CreateSong';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css'
 import './Songs.css'
-import { getAllAlbums } from '../../store/albums';
+import { getAllAlbums, actionResetAlbums } from '../../store/albums';
 import { actionPlaySong } from '../../store/songPlayer'
 
 
@@ -20,7 +20,7 @@ export default function AllSongs() {
     const history = useHistory()
 
     // const userSongs = allSongs.filter(song => song.userId === user.id)
-    let mySongs
+    // let mySongs
 
 
     useEffect(() => {
@@ -30,6 +30,7 @@ export default function AllSongs() {
 
     useEffect(() => {
         dispatch(getAllAlbums())
+        return () => dispatch(actionResetAlbums())
     }, [dispatch])
 
 

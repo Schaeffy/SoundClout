@@ -16,6 +16,7 @@
     width: 100%;
     height: 380px;
     background: linear-gradient(to top right, #ffcba8, #b5baff);
+    border-bottom: 3px solid antiquewhite;
 }
 
 
@@ -29,7 +30,13 @@
 #albumSongLinks {
     text-decoration: none;
     list-style: none;
+    color: rgb(92, 135, 255)
 }
+
+#albumSongLinks:hover {
+    color: rgb(44, 99, 252)
+}
+
 
 
 .CreateAlbumButton {
