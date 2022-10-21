@@ -35,13 +35,9 @@ export default function AlbumDetails() {
                 <div className='albumContainer'>
 
                     <div className='albumDetailsContainer'>
-                        <img src={album.imageUrl} alt=''></img>
-                        {/* <AudioPlayer
-                        autoPlay={false}
-                        src={album.url}
-                        onPlay={e => console.log("onPlay")}
-                    // other props here
-                    /> */}
+                        <span className='albumArtContainer'>
+                            <img src={album.imageUrl} className='albumArt' alt=''></img>
+                        </span>
                         <div className='songInfoContainer'>
 
                             <div className='albumDetailsInfo'>
@@ -86,7 +82,9 @@ export default function AlbumDetails() {
                 <div className='albumContainer'>
 
                     <div className='albumDetailsContainer'>
-                        <img src={album.imageUrl} alt=''></img>
+                        <span className='albumArtContainer'>
+                            <img src={album.imageUrl} className='songArt' alt=''></img>
+                        </span>
                         {/* <AudioPlayer
     autoPlay={false}
     src={album.url}

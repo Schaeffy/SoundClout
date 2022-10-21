@@ -82,8 +82,9 @@ export default function SongDetails() {
                         </div>
 
                         {/* <div className='songImage'> */}
-
-                        <img src={song.imageUrl} className='songArt' alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                        <span className='songArtContainer'>
+                            <img src={song.imageUrl} className='songArt' alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                        </span>
                         {/* <AudioPlayer
                         autoPlay={false}
                         src={song.url}

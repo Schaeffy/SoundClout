@@ -41,13 +41,13 @@
     justify-content: center;
     align-items: center;
     padding: 10px;
-    text-align: center;
+    text-align: left;
 
 }
 
 .albumCardImage img{
-    width: 100%;
-    height: 10em;
+    width: 150px;
+    height: 150px;
 }
 
 .albumCardImage:hover {
