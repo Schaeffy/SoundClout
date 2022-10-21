@@ -41,21 +41,17 @@ View and explore the live site here: [**Soundclout**](https://sound-clout.heroku
 ## Features
 
 * Songs  
+* Albums
   
 A splash page where you can explore some songs, log in as a user, or sign up for a new account.  
   
-![image](https://user-images.githubusercontent.com/79663621/192253587-269524a3-9361-4bd2-b794-1cbc059f2fb6.png)  
+![image](https://user-images.githubusercontent.com/79663621/197257715-b36f9174-84fc-43a5-a4d6-3fd24d87a0a9.png)
   
 As a user, you can create, edit, and delete songs as well as albums.  
   
-![image](https://user-images.githubusercontent.com/79663621/192254027-d780d6ad-a3f9-428f-8ad3-179836e14a5a.png)  
+![image](https://user-images.githubusercontent.com/79663621/197258094-faa2bc7b-b743-44c1-8295-31ccb3a02952.png)
   
-![image](https://user-images.githubusercontent.com/79663621/192254343-c7fdd1d0-6c09-4333-afc7-197b25c5e11d.png)
-
-
-
-
-* Albums
+![image](https://user-images.githubusercontent.com/79663621/197258184-a38fe39a-0aaa-4c51-8888-161975a0842b.png)
 
 ## Upcoming Features
 
@@ -74,5 +70,3 @@ As a user, you can create, edit, and delete songs as well as albums.
 3. Run ```npm start``` in the frontend directory
 4. Open http://localhost:3000 in your browser
 
-
-### Images of Features
