@@ -25,11 +25,74 @@
     margin-left: 3%;
 }
 
+#songDetailsTitle {
+    box-sizing: border-box;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    background-color: rgba(0,0,0,.8);
+    font-weight: 100;
+    color: #fff;
+    font-size: 24px;
+    line-height: 37px;
+    width: fit-content;
+
+}
+
+#songDetailsTitle > p {
+    box-sizing: border-box;
+    padding: 4px 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+#songDetailsArtist {
+    box-sizing: border-box;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    background-color: rgba(0,0,0,.8);
+    font-weight: 100;
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.2;
+    width: fit-content;
+    margin-top: 5px;
+}
+
+#songDetailsArtist > p {
+    box-sizing: border-box;
+    padding: 2px 7px 3px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 .songInfoContainer {
     display: flex;
     flex-direction: column;
     width: 100%;
+    /* justify-content: center; */
+    margin-top: 3%;
+}
+
+.songPlayContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.songPlayInfoContainer {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    width: 100%;
+}
+
+.songOtherInfoContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10%;
+    row-gap: 10px;
 }
 
 .artistDetailsContainer{
@@ -45,8 +108,10 @@
 
 
 .CreateSongButton {
-    width: fit-content;
-    height: fit-content;
+    display: flex;
+    width: 100px;
+    height: 50px;
+    align-items: center;
     background-color: #f50;
     border-color: #f50;
     color: whitesmoke;
@@ -54,7 +119,6 @@
     padding: 10px 15px;
     border-radius: 3px;
     cursor: pointer;
-    width: 100%;
 }
 
 .buttonContainer {
@@ -67,7 +131,7 @@
     column-gap: 5%;
 }
 
-.songContainer img {
+.songArt {
     /* position: absolute; */
     width: 300px;
     height: 300px;
@@ -75,4 +139,13 @@
     margin-top: 3%;
     margin-bottom: 3%;
 
+}
+
+#songPagePlayButton {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border-color: #f50;
+    background-color: #f50;
+    margin-left: 3%;
 }

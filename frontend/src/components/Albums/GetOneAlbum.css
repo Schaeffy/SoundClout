@@ -1,20 +1,28 @@
 .albumContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: left;
     padding: 3%;
     background: linear-gradient(to top right, #ffcba8, #b5baff);
+    padding: 0;
 }
 
 .albumDetailsContainer {
-    padding-left: 3%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 380px;
+    background: linear-gradient(to top right, #ffcba8, #b5baff);
 }
 
 
 .albumDetailsInfo {
     margin-top: 3%;
+    margin-left: 3%;
+    margin-right: 3%;
 
 }
 
@@ -25,8 +33,10 @@
 
 
 .CreateAlbumButton {
-    width: fit-content;
-    height: fit-content;
+    display: flex;
+    width: 100px;
+    height: 50px;
+    align-items: center;
     background-color: #f50;
     border-color: #f50;
     color: whitesmoke;
@@ -34,7 +44,7 @@
     padding: 10px 15px;
     border-radius: 3px;
     cursor: pointer;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .buttonContainer {
@@ -49,6 +59,9 @@
 }
 
 .albumContainer img {
-    width: 50%;
-    height: 50%;
+    width: 300px;
+    height: 300px;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }

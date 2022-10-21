@@ -40,28 +40,51 @@ export default function SongDetails() {
 
                         <div className='songInfoContainer'>
 
-                            <div className='songDetailsInfo'>
-                                Song: {song.title}
+                            <div className='songPlayContainer'>
+
+                                <img id='songPagePlayButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
+
+                                <div className='songPlayInfoContainer'>
+
+                                    <div className='songDetailsInfo' id='songDetailsTitle'>
+                                        <p>
+                                            <span>
+                                                {song.title}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <div className='songDetailsInfo' id='songDetailsArtist'>
+                                        <p>
+                                            <span>
+                                                {song.Artist.username}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                            <div className='songDetailsInfo'>
-                                Album: {song.Album.title}
-                            </div>
+                            <div className='songOtherInfoContainer'>
 
-                            <div className='songDetailsInfo'>
-                                Artist: {song.Artist.username}
-                            </div>
+                                <div className='songDetailsInfo'>
+                                    Album: {song.Album.title}
+                                </div>
 
-                            <div className='songDetailsInfo'>
-                                Description: {song.description}
+
+                                <div className='songDetailsInfo'>
+                                    Description: {song.description}
+                                </div>
+
                             </div>
 
                         </div>
 
                         {/* <div className='songImage'> */}
 
-                            <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
-                            {/* <AudioPlayer
+                        <img src={song.imageUrl} className='songArt' alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                        {/* <AudioPlayer
                         autoPlay={false}
                         src={song.url}
                         onPlay={e => console.log("onPlay")}
@@ -73,9 +96,9 @@ export default function SongDetails() {
 
                     <div className='artistDetailsContainer'>
 
-                        <div className='songDetailsInfo'>
+                        {/* <div className='songDetailsInfo'>
                             Artist: {song.Artist.username}
-                        </div>
+                        </div> */}
 
                     </div>
 
@@ -90,36 +113,57 @@ export default function SongDetails() {
         return (
             <div>
 
-
-
                 <div className='songContainer'>
 
                     <div className='songDetailsContainer'>
 
                         <div className='songInfoContainer'>
 
-                            <div className='songDetailsInfo'>
-                                Song: {song.title}
+                            <div className='songPlayContainer'>
+
+                                <img id='songPagePlayButton' onClick={() => dispatch(actionPlaySong(song))} src='https://peakstate.global/wp-content/uploads/2016/09/icon-soundcloud-play.png' alt='' />
+
+                                <div className='songPlayInfoContainer'>
+
+                                    <div className='songDetailsInfo' id='songDetailsTitle'>
+                                        <p>
+                                            <span>
+                                                {song.title}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <div className='songDetailsInfo' id='songDetailsArtist'>
+                                        <p>
+                                            <span>
+                                                {song.Artist.username}
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                </div>
+
                             </div>
 
-                            <div className='songDetailsInfo'>
-                                Album: {song.Album.title}
-                            </div>
+                            <div className='songOtherInfoContainer'>
 
-                            <div className='songDetailsInfo'>
-                                Artist: {song.Artist.username}
-                            </div>
+                                <div className='songDetailsInfo'>
+                                    Album: {song.Album.title}
+                                </div>
 
-                            <div className='songDetailsInfo'>
-                                Description: {song.description}
+
+                                <div className='songDetailsInfo'>
+                                    Description: {song.description}
+                                </div>
+
                             </div>
 
                         </div>
 
                         {/* <div className='songImage'> */}
 
-                            <img src={song.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
-                            {/* <AudioPlayer
+                        <img src={song.imageUrl} className='songArt' alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                        {/* <AudioPlayer
                         autoPlay={false}
                         src={song.url}
                         onPlay={e => console.log("onPlay")}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { NavLink, useHistory, Link} from 'react-router-dom'
+import { NavLink, useHistory, Link } from 'react-router-dom'
 import { getAllAlbums, actionResetAlbums } from '../../store/albums';
 import CreateAlbumModal from './CreateAlbum';
 import { getAllSongs, actionResetSongs } from '../../store/songs';
@@ -34,7 +34,7 @@ export default function AllAlbums() {
     }
     if (!albums.Album || !albums.Artist) {
         return (
-            <div style={{backgroundColor:'white'}}>
+            <div style={{ backgroundColor: 'white' }}>
 
                 <div className='createAlbumContainer'>
                     <CreateAlbumModal />
@@ -64,7 +64,7 @@ export default function AllAlbums() {
 
                                         </div>
                                         <Link to={`/albums/${album.id}`}>
-                                        <img src={album.imageUrl} alt='' />
+                                            <img src={album.imageUrl} alt='' />
                                         </Link>
 
                                     </div>

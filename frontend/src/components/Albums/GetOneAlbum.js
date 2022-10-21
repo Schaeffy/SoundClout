@@ -34,35 +34,42 @@ export default function AlbumDetails() {
             <div>
                 <div className='albumContainer'>
 
-                    <img src={album.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(album))}></img>
-                    {/* <AudioPlayer
+                    <div className='albumDetailsContainer'>
+                        <img src={album.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(album))}></img>
+                        {/* <AudioPlayer
                         autoPlay={false}
                         src={album.url}
                         onPlay={e => console.log("onPlay")}
                     // other props here
                     /> */}
-                    <div className='albumDetailsContainer'>
-                        <div className='albumDetailsInfo'>
-                            Album: {album.title}
+                        <div className='songInfoContainer'>
+
+                            <div className='albumDetailsInfo'>
+                                Album: {album.title}
+                            </div>
+
+                            <div className='albumDetailsInfo'>
+                                Artist: {album.Artist.username}
+                            </div>
+
+                            <div className='albumDetailsInfo'>
+                                Description: {album.description}
+                            </div>
+
+                            <div className='albumDetailsInfo'>
+                                Songs: {album.Songs.map((song) => {
+                                    return (
+                                        <div key={song.id} >
+                                            <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>{song.title}</NavLink>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
 
-                        <div className='albumDetailsInfo'>
-                            Artist: {album.Artist.username}
-                        </div>
+                    </div>
 
-                        <div className='albumDetailsInfo'>
-                            Description: {album.description}
-                        </div>
-
-                        <div className='albumDetailsInfo'>
-                            Songs: {album.Songs.map((song) => {
-                                return (
-                                    <div key={song.id} >
-                                        <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>{song.title}</NavLink>
-                                    </div>
-                                )
-                            })}
-                        </div>
+                    <div className='artistDetailsContainer'>
 
                     </div>
 
@@ -82,46 +89,53 @@ export default function AlbumDetails() {
 
                 <div className='albumContainer'>
 
-                    <img src={album.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(album))}></img>
-                    {/* <AudioPlayer
-                        autoPlay={false}
-                        src={album.url}
-                        onPlay={e => console.log("onPlay")}
-                    // other props here
-                    /> */}
-
                     <div className='albumDetailsContainer'>
-                        <div className='albumDetailsInfo'>
-                            Album: {album.title}
-                        </div>
+                        <img src={album.imageUrl} alt='' onClick={() => dispatch(actionPlaySong(album))}></img>
+                        {/* <AudioPlayer
+    autoPlay={false}
+    src={album.url}
+    onPlay={e => console.log("onPlay")}
+// other props here
+/> */}
+                        <div className='songInfoContainer'>
 
+                            <div className='albumDetailsInfo'>
+                                Album: {album.title}
+                            </div>
 
-                        <div className='albumDetailsInfo'>
-                            Artist: {album.Artist.username}
-                        </div>
+                            <div className='albumDetailsInfo'>
+                                Artist: {album.Artist.username}
+                            </div>
 
-                        <div className='albumDetailsInfo'>
-                            Description: {album.description}
-                        </div>
+                            <div className='albumDetailsInfo'>
+                                Description: {album.description}
+                            </div>
 
-                        <div className='albumDetailsInfo'>
-                            Songs: {album.Songs.map((song) => {
-                                return (
-                                    <div key={song.id}>
-                                        <NavLink to={`/songs/${song.id}` } id='albumSongLinks'> - {song.title}</NavLink>
-                                    </div>
-                                )
-                            })}
+                            <div className='albumDetailsInfo'>
+                                Songs: {album.Songs.map((song) => {
+                                    return (
+                                        <div key={song.id} >
+                                            <NavLink to={`/songs/${song.id}`} id='albumSongLinks'>{song.title}</NavLink>
+                                        </div>
+                                    )
+                                })}
+                            </div>
                         </div>
 
                     </div>
 
+                    <div className='artistDetailsContainer'>
+                        <div className='buttonContainer'>
+                            <EditAlbumModal />
+                            <DeleteAlbumModal />
+                        </div>
+
+                    </div>
+
+
+
                 </div>
 
-                <div className='buttonContainer'>
-                    <EditAlbumModal />
-                    <DeleteAlbumModal />
-                </div>
 
             </div>
         )
