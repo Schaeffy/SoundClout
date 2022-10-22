@@ -32,9 +32,9 @@ module.exports = {
     },
     {
       userId: 3,
-      title: 'All We Know Is Falling',
-      description: 'All We Know Is Falling is the debut studio album by American rock band Paramore, released on July 26, 2005, under the Atlantic-distributed Fueled by Ramen in the United States.',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/9/9e/Paramore_-_All_We_Know_Is_Falling.png'
+      title: 'From Under The Cork Tree',
+      description: "From Under the Cork Tree is the second studio album by the American rock band Fall Out Boy, released on May 3, 2005, through Island Records as the band's major label debut.",
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/0/00/Fall_Out_Boy_-_From_Under_the_Cork_Tree_-_CD_album_cover.jpg'
     },
     {
       userId: 2,
@@ -53,6 +53,18 @@ module.exports = {
       title: 'Let Go',
       description: 'Let Go is the debut studio album by Canadian singer-songwriter Avril Lavigne. It was released on June 4, 2002 by Arista Records.',
       imageUrl: 'https://upload.wikimedia.org/wikipedia/en/2/27/Let_Go_cover.png'
+    },
+    {
+      userId: 4,
+      title: 'None Shall Pass',
+      description: 'None Shall Pass is the fifth studio album by American hip hop artist Aesop Rock. It was released on Definitive Jux on August 28, 2007.',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/e/e8/None_shall_pass_aes_rock.jpg'
+    },
+    {
+      userId: 2,
+      title: 'Take This To Your Grave',
+      description: 'Take This to Your Grave is the debut studio album by American rock band Fall Out Boy, released on May 6, 2003, by Fueled by Ramen.',
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/en/0/01/Take_This_To_Your_Grave.jpg'
     }
    ])
   },
