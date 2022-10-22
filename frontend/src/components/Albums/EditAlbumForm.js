@@ -28,7 +28,8 @@ export default function EditAlbum({ setModalOpen }) {
         if (!title) validationErrors.push('Album must have a title')
         if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
         if (!description) validationErrors.push('Album must have a description')
-
+        if (!imageUrl) validationErrors.push('Album image is required')
+        if (!imageUrl.slice(-5).includes(".png") && !imageUrl.slice(-6).includes(".jpeg") && !imageUrl.slice(-5).includes(".jpg")) validationErrors.push('Please enter a valid image (.png, .jpg, .jpeg)')
         setErrors(validationErrors);
 
         if (validationErrors.length) setDisplayErrors(true)
@@ -48,7 +49,8 @@ export default function EditAlbum({ setModalOpen }) {
 
     useEffect(() => {
         if (displayErrors) validate()
-    }, [title, description])
+        if (imageUrl === '.png' || imageUrl === '.jpg' || imageUrl === '.jpeg') setImageUrl('https://cdn4.iconfinder.com/data/icons/public-sign-part03/100/_-14-512.png')
+    }, [title, description, imageUrl])
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -95,7 +97,7 @@ export default function EditAlbum({ setModalOpen }) {
 
                 <label>
 
-                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl || "Enter a imageUrl"} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl || "Enter a imageUrl"} required onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
                 <div className="signUpErrors">

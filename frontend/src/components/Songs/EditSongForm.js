@@ -36,6 +36,10 @@ export default function EditSong({ setModalOpen }) {
         if (description.length > 256) validationErrors.push('Description cannot exceed 256 characters')
         if (!description) validationErrors.push('Song must have a description')
         if (!url.slice(-4).includes('.mp3')) validationErrors.push('Song url must be an mp3 file (ends with .mp3)')
+        if (!imageUrl) validationErrors.push('Song image is required')
+        if (!imageUrl.slice(-5).includes(".png") && !imageUrl.slice(-6).includes(".jpeg") && !imageUrl.slice(-5).includes(".jpg")) validationErrors.push('Please enter a valid image (ends with .png or .jpeg)')
+        if (url === '.mp3') validationErrors.push('Please enter a valid mp3 url')
+        if (albumId === "") validationErrors.push('Please select or create an album first')
 
         setErrors(validationErrors);
 
@@ -48,7 +52,8 @@ export default function EditSong({ setModalOpen }) {
 
     useEffect(() => {
         if (displayErrors) validate()
-    }, [title, description, url])
+        if (imageUrl === '.png' || imageUrl === '.jpg' || imageUrl === '.jpeg') setImageUrl('https://cdn4.iconfinder.com/data/icons/public-sign-part03/100/_-14-512.png')
+    }, [title, description, url, imageUrl, albumId])
 
 
     useEffect(() => {
@@ -132,7 +137,7 @@ export default function EditSong({ setModalOpen }) {
 
                 <label>
 
-                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl || "Enter an imageUrl"} onChange={(e) => setImageUrl(e.target.value)} />
+                    <input className="inputField" type="text" value={imageUrl} placeholder={imageUrl || "Enter an imageUrl"} required onChange={(e) => setImageUrl(e.target.value)} />
                 </label>
 
 

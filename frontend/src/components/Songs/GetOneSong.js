@@ -83,7 +83,7 @@ export default function SongDetails() {
 
                         {/* <div className='songImage'> */}
                         <span className='songArtContainer'>
-                            <img src={song.imageUrl} className='songArt' alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                            <img src={song.imageUrl} className='songArt' alt='' ></img>
                         </span>
                         {/* <AudioPlayer
                         autoPlay={false}
@@ -163,7 +163,10 @@ export default function SongDetails() {
 
                         {/* <div className='songImage'> */}
 
-                        <img src={song.imageUrl} className='songArt' alt=''></img>
+                        <span className='songArtContainer'>
+                            <img src={song.imageUrl} className='songArt' alt='' onClick={() => dispatch(actionPlaySong(song))}></img>
+                        </span>
+
                         {/* <AudioPlayer
                         autoPlay={false}
                         src={song.url}

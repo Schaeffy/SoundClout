@@ -71,8 +71,9 @@ export default function UsersSongs() {
 
                                         </div>
 
-                                        <img src={song.imageUrl} alt='' />
-
+                                        <span className='songArtContainer'>
+                                            <img src={song.imageUrl} className='songArt' alt=''></img>
+                                        </span>
                                     </div>
 
                                     <div className='songInfo'>

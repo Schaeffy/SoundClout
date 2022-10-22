@@ -25,11 +25,11 @@ export default function DeleteSong({ setModalOpen }) {
     return (
         <div className="delete-song">
             <form className='deleteForm' onSubmit={handleSubmit}>
-                <h1>Delete: {song.title}</h1>
+                <h1>Delete Song: <p>{song.title}</p></h1>
 
                 <div className="buttonContainer">
 
-                    <button className='DeleteButton' type='submit'>Delete Song</button>
+                    <button className='DeleteButton' type='submit'>Confirm</button>
                     <button className='DeleteButton' onClick={() => setModalOpen(false)}>Cancel</button>
                 </div>
 
