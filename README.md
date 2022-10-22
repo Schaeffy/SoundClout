@@ -2,7 +2,14 @@
 
 <!-- ![SoundcloutV](https://user-images.githubusercontent.com/79663621/190755671-3e41c53c-4dad-45cf-a33b-bd9782d0cf40.png) -->
 
-![SoundcloutV2](https://user-images.githubusercontent.com/79663621/190756678-0ea7eeda-52c3-449e-8394-b5e7627e9deb.png)
+<!-- ![SoundcloutV2](https://user-images.githubusercontent.com/79663621/190756678-0ea7eeda-52c3-449e-8394-b5e7627e9deb.png) -->
+
+
+
+![SoundCloutLogoVert2](https://user-images.githubusercontent.com/79663621/197322388-9ecf2135-155b-499f-b143-ff5dd09a79df.png)
+
+
+
 
 
 
