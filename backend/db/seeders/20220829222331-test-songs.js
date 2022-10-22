@@ -105,8 +105,8 @@ module.exports = {
         userId: 2,
         title: "Nothing Better",
         description: 'Song by The Postal Service',
-        url: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/PostalService_cover300dpi.jpg',
-        imageUrl:'https://upload.wikimedia.org/wikipedia/en/5/54/Three_Cheers_for_Sweet_Revenge.png',
+        url: 'https://mus3.gomusic.fm/69e026fd-a155-4c56-b6d3-5e01425610f56700.mp3',
+        imageUrl:'https://upload.wikimedia.org/wikipedia/commons/c/ce/PostalService_cover300dpi.jpg',
       },
       {
         albumId: 6,
