@@ -16,9 +16,9 @@
 
 ## Description
 
-**Soundclout** is a fullstack clone inspired by [**Soundcloud**](https://soundcloud.com/) for would be clout-chasers, hobby musicians, and aspiring influencers.  
+**SoundClout** is a fullstack clone inspired by [**SoundCloud**](https://soundcloud.com/) for would be clout-chasers, hobby musicians, and aspiring influencers.  
   
-View and explore the live site here: [**Soundclout**](https://sound-clout.herokuapp.com)
+View and explore the live site here: [**SoundClout**](https://sound-clout.herokuapp.com)
 
 ## Wiki Links
 * [API Documentation](https://github.com/Schaeffy/soundcloud/wiki/API-Documentation)
